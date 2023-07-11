@@ -1,0 +1,82 @@
+.game-field
+{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.game-cell
+{
+    width: 2.5rem;
+    height: 2.5rem;
+
+    font-size: 1.25rem;
+    font-weight: 800;
+
+    border: 3px solid black;
+}
+
+
+.opened
+{
+    background-color: #424242;
+}
+.closed
+{
+    background-image: linear-gradient(to bottom, gainsboro,silver);
+    border: 3px solid #222222;
+}
+.closed:hover
+{
+    background-image: linear-gradient(to bottom, mediumseagreen,seagreen);
+    border: 3px solid darkgreen;
+}
+.triggered
+{
+    background-color: crimson;
+}
+.defused
+{
+    background-color: seagreen;
+}
+.mistaken
+{
+    background-color: goldenrod;
+}
+
+
+
+
+.digit-1
+{
+    color: var(--color-digit-1);
+}
+.digit-2
+{
+    color: var(--color-digit-2);
+}
+.digit-3
+{
+    color: var(--color-digit-3);
+}
+.digit-4
+{
+    color: var(--color-digit-4);
+}
+.digit-5
+{
+    color: var(--color-digit-5);
+}
+.digit-6
+{
+    color: var(--color-digit-6);
+}
+.digit-7
+{
+    color: var(--color-digit-7);
+}
+.digit-8
+{
+    color: var(--color-digit-8);
+}

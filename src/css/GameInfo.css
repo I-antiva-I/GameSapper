@@ -1,0 +1,51 @@
+/*
+                <div className="game-info">
+                        <div className="info-state">
+                            <div>Game status: {gameState}</div>
+                        </div>
+
+                        <div className="info-flags">
+                            <div>Flags placed: {numberOfFlaggedCells}</div>
+                        </div>
+
+                        <div className="info-cells">
+                            <div>Cells opened: {numberOfRevealedCells}</div>
+                        </div>
+
+                        <div className="info-boms">
+                            <div>Bombs: {gameSettings.numberOfBombsMin} - {gameSettings.numberOfBombsMax}</div>
+                        </div>
+
+                        <div className="info-check">
+                            <div>Field Size: {gameSettings.numberOfCols} x {gameSettings.numberOfRows}</div>
+                        </div>
+                </div>
+
+
+
+*/
+.game-info
+{
+    font-size: 10px;
+    width: 100%;
+    height: auto;
+    padding: 8px 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.game-info > div
+{
+    width: 20%;
+    height: auto;
+    padding: 2px;
+
+    background-color: #424242;
+    border: 2px solid black;
+    text-align: center;
+}
+
+
+
