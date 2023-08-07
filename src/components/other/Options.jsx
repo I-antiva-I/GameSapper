@@ -1,25 +1,24 @@
+import {getDefaultSettings} from "../../scripts/utility/difficulty_settings"
 
-import {selectDefaultSettings} from "../scripts/DifficultySettings"
 
 function Options(props)
 {
 
     return(
-        <div className={`options-area ${ props.isVisible? "" : "hidden"}`}>
+        <div className={"options-area"}>
                     
             <div className="difficulty-basic">
                 <h3>Difficulty Options:</h3>
                 <div className="button-container">
-                    <button onClick={()=>{props.setterGameSettings(selectDefaultSettings(1))}}>Easy</button>
-                    <button onClick={()=>{props.setterGameSettings(selectDefaultSettings(2))}}>Medium</button>
-                    <button onClick={()=>{props.setterGameSettings(selectDefaultSettings(3))}}>Hard</button>
+                    <button onClick={()=>{props.changeDifficultySettings(getDefaultSettings("DIFFICULTY_EASY"))}}>Easy</button>
+                    <button onClick={()=>{props.changeDifficultySettings(getDefaultSettings("DIFFICULTY_MEDIUM"))}}>Medium</button>
+                    <button onClick={()=>{props.changeDifficultySettings(getDefaultSettings("DIFFICULTY_HARD"))}}>Hard</button>
                 </div>
-
             </div>
 
             <div className="difficulty-custom">
                 <h3>Custom Difficulty:</h3>
-                <form onSubmit={props.functionOnSubmit}>
+                <form >
                     <label htmlFor="fieldBombMax">Max Bomb Count</label>
                     <input type="number" id="fieldBombMax" name="fieldBombMax" min="1" max="99" required="required"></input>
                     
@@ -48,5 +47,6 @@ function Options(props)
     )
 
 }
+
 
 export default Options;
