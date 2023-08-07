@@ -1,0 +1,49 @@
+.control-panel
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 4px;
+
+    border: 2px dashed red;
+}
+
+.control-button-wrapper
+{
+    border: 2px dashed blue;
+}
+.control-button-wrapper.hidden
+{
+    display: none;
+}
+
+.control-button-label
+{
+    width: 100%;
+    background-color:  maroon;
+    border: 2px solid black;
+
+    font-size: 0.75rem;
+
+    text-align: center;
+    color: white;
+    margin: 2px 0;
+    padding: 2px 0;
+}
+
+
+.control-button
+{
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 64px;
+    height: 64px;
+
+    font-size: 2rem;
+}

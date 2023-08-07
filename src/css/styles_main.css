@@ -1,0 +1,55 @@
+*, *::after, *::before
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    user-select: none;
+    font-family: "Titillium Web";
+}
+
+
+body
+{
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: #696969;
+}
+
+.app
+{
+    width: 350px;
+    max-width: 350px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+header
+{
+    border: 2px dashed hotpink;
+    
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.control-panel
+{
+    flex: 0 0 auto;
+}
+.my-header
+{
+    min-width: 200px;
+    flex: 1000 0 auto;
+}
