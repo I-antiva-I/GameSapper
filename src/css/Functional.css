@@ -1,9 +1,0 @@
-.unclickable
-{
-    pointer-events: none;
-    background-color: #424242;
-}
-.hidden
-{
-    display: none;
-}
