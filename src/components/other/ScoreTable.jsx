@@ -10,13 +10,13 @@ function ScoreTable(props)
             return(
                 <div className="labels">
                     <div className="score-label">MaxBombs</div>
-                    <div className="score-label">{props.bestScore["bombs"]}</div>
+                    <div className="score-label">{}</div>
                     <div className="score-label">Cells</div>
-                    <div className="score-label">{props.bestScore["size"]}</div>
+                    <div className="score-label">{}</div>
                     <div className="score-label">Time</div>
-                    <div className="score-label">{props.bestScore["seconds"]}</div>
+                    <div className="score-label">{}</div>
                     <div className="score-label">Date</div>
-                    <div className="score-label">{props.bestScore["date"]}</div>
+                    <div className="score-label">{}</div>
                 </div>
             )
         }
@@ -48,15 +48,15 @@ function ScoreTable(props)
 
 
     return(
-        <div className={`score-area ${ (props.isVisible)? "" : "hidden"}`}>
+        <div className={`score-area`}>
             <div className="best-score">
                 <h3>Best Score</h3>
-                {getBest()}
+                {}
             </div>
             
             <div className="last-score">
                 <h3>Last Score</h3>
-                {getLast()}
+                {}
             </div>
         </div>
     )
