@@ -1,264 +1,186 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // COMPONENTS
-import Timer from "./Timer";
-import GameField from "./GameField";
-import ScoreTable from "./ScoreTable";
-import GameTitle from "./GameTitle";
-import ControlButton from "./ControlButton";
-import Options from "./Options";
+import GameField from "./game/GameField";
+import MyHeader from "./other/MyHeader";
 
-// SCRIPTS+FUNCTIONS
-import {selectDefaultSettings} from "../scripts/DifficultySettings"
-import {getButtonState} from "../scripts/ButtonManager"
-import { isAreaVisible } from "../scripts/AreaManager";
-import { getGoodTime } from "../scripts/DateManager";
-import { findBestScore } from "../scripts/ScoreManager";
-    //  GAME STATES: AWAIT PLAY OVER WIN
-    // SCENE STATES: IDLE SETUP SCORE GAME DEFAULT* FLAG*
+// CLASSES + FUNCTIONS
+import { GameState } from "../scripts/game_logic/game_state";
+import { LogicField } from "../scripts/game_logic/logic_field";
+import { GameSettings } from "../scripts/game_logic/game_settings"
+import ControlPanel from "./control/ControlPanel";
+import Options from "./other/Options";
+import ScoreTable from "./other/ScoreTable";
+import InfoPanel from "./other/InfoPanel";
 
-function PlayScene()
+
+function PlayScene(props)
 {   
-    // SCENE + GAME STATE
-    let [sceneState,setSceneState]=useState("IDLE");    // GAME-SCORE-OPTIONS
-    let [gameState,setGameState]=useState("AWAIT");
-    let [timerState,setTimerState]=useState(false);
+    // Game field settings
+    let [gameSettings, setGameSettings] =      useState(new GameSettings(5, 3, 3, 3, 1));
 
-    // SCORE
-    let [lastScore,setLastScore]=useState(JSON.parse(localStorage.getItem("last_score")));
-    let [bestScore,setBestScore]=useState(JSON.parse(localStorage.getItem("best_score")));
-   
-    // OPTIONS
-    let [gameSettings,setGameSettings]=useState(selectDefaultSettings(1));
-   
-    // GAME VARS
-    let [clickMode,setClickMode]=useState("DEFAULT");
-    let [numberOfRevealedCells,setNumberOfRevealedCells]=useState(0);
-    let [numberOfFlaggedCells,setNumberOfFlaggedCells]=useState(0);
+    // Game state
+    // States: STATE_IDLE, STATE_IN_PROGRESS, STATE_END
+    let [gameState, setGameState] = 
+        useState(new GameState("STATE_IDLE", new LogicField(gameSettings)));  
     
-    //   FUNCTIONS
-    // FIELD
-    let functionRestartGame = useRef(null);
-    let functionEndGame = useRef(null);
-    // TIMER
-    let functionGetTimeVal = useRef(null)
-    let functionResetTimeVal = useRef(null)
+    // Click mode
+    // Modes: CLICK_OPEN, CLICK_FLAG
+    let [clickMode, setClickMode] = useState("CLICK_OPEN");
 
-    function onGameStarted()
+    // Display mode
+    // Modes: DISPLAY_GAME, DISPLAY_SETTINGS, DISPLAY_SCORE, DISPLAY_INFO
+    let [displayMode, setDisplayMode] = useState("DISPLAY_GAME");
+
+    let [victory, setVictoty] = useState(false);
+
+    //
+    let onCellClicked = (coors) =>
     {
-        functionResetTimeVal.current();
-        setTimerState(true);
-    }
-
-
-
-
-    function onGameFinished(victory)
-    {
+        console.log("App recieved coordinates: ", coors, clickMode);
+        
+        let logicField =    gameState.logicField;
+        let state =         gameState.currentState;
     
-        setTimerState(false);
-        if(victory)
+        // Generate field if the first cell is clicked
+        if (state == "STATE_IDLE")
         {
-            setGameState("WIN");
-            //console.log("VICTORY!",functionGetTimeVal.current())
+            logicField.generateField(coors);
+            state= "STATE_IN_PROGRESS";
+        }
 
-            let timeVal=document.getElementById("g-timer").innerHTML;
-
-            // LAST SCORE
-            let tempLast=
+        // Interact with clicked cell (Open/Flag)
+        if (clickMode == "CLICK_OPEN")
+        {
+            if (!logicField.openCell(coors))
             {
-                  bombs: gameSettings.numberOfBombsMax,
-                  size: gameSettings.numberOfCols*gameSettings.numberOfRows,
-                  seconds: timeVal,
-                  date: getGoodTime(),
+                let victory = logicField.endGame();
+                state = "STATE_END";
+                console.log(victory);
+                setVictoty(victory);
             }
-
-            localStorage.setItem("last_score",JSON.stringify(tempLast))
-            localStorage.setItem("best_score",JSON.stringify(findBestScore(tempLast,bestScore)))
-
-            //console.log("L>>",localStorage.getItem("last_score"));
-            //console.log("B>>",localStorage.getItem("best_score"));
-
-            setBestScore(findBestScore(tempLast,bestScore))
-            setLastScore(tempLast);
-            
         }
         else
         {
-            setGameState("OVER");
+            logicField.flagCell(coors);
         }
-        setNumberOfRevealedCells(0);
-        setNumberOfFlaggedCells(0);
-    }
+        
+        setGameState(new GameState(state, logicField));
+        console.log(logicField);
+    }    
 
-    function updateGameInfo(info)
-    {  
-        setGameState("PLAY")
-        if(info.isGameOver)
-        {
-            setGameState("OVER")
-        }
-        else
-        {        
-            setNumberOfRevealedCells(info.numberOfRevealedCells);
-            setNumberOfFlaggedCells(info.numberOfFlaggedCells);
-        }
-
-    }
-
-    function onGameButtonClicked()
+    //
+    let changeDifficultySettings= (settings) =>
     {
-        setSceneState("GAME");
-        if(gameState==="OVER" || gameState==="WIN")
+        console.log(settings);
+
+        setGameSettings(settings);
+        setGameState(new GameState("STATE_IDLE", new LogicField(settings), false));
+    }
+
+    //
+    let onControlButtonClicked= (buttonAction) =>
+    {
+        console.log("ACT", buttonAction)
+
+        switch(buttonAction)
         {
-            setGameState("AWAIT");
-            functionRestartGame.current();
-        }
+            case "ACTION_INFO":
+                setDisplayMode("DISPLAY_INFO");
+                break;
+
+            case "ACTION_SETTINGS":
+                setDisplayMode("DISPLAY_SETTINGS");
+                break;
+
+            case "ACTION_SCORE":
+                setDisplayMode("DISPLAY_SCORE");
+                break;
+
+            case "ACTION_PLAY":
+                setDisplayMode("DISPLAY_GAME");
+                break;
+
+            case "ACTION_MODE_OPEN":
+                setClickMode("CLICK_OPEN");
+                break;
+
+            case "ACTION_MODE_FLAG":
+                setClickMode("CLICK_FLAG");
+                break;
+
+            case "ACTION_END_GAME":
+                let logicField = gameState.logicField;
+                let victory = logicField.endGame();
+                console.log(victory);
+                setVictoty(victory);
+                setGameState(new GameState("STATE_END", logicField));
+                break;
+
+            case "ACTION_RETURN":
+            case "ACTION_RESTART":
+                setClickMode("CLICK_OPEN");
+                setGameState(new GameState("STATE_IDLE", new LogicField(gameSettings)));
+                break;
+
+            case "ACTION_RETURN":
+                break;
+
+            default:     
+                console.log("No such action", buttonAction);
+        } 
     }
 
 
-    let setCustomSettings = (event) => {
-        event.preventDefault()
+    let controlInfo =
+    {
+        clickMode:      clickMode,
+        displayMode:    displayMode,
+        gameState:      gameState.currentState,
+    }
 
-        let customSettings=
-        {
-            numberOfCols:event.target[2].value,
-            numberOfRows:event.target[3].value,
-            numberOfBombsMin:event.target[1].value,
-            numberOfBombsMax:event.target[0].value,
-            safeZoneRadius:event.target[4].value,
-        }
-
-        setGameSettings(customSettings);
-      }
-    
-    
-
-    return (
+    return(
         <div className="play-scene">
-            <GameTitle/>
+            <header>
+                <MyHeader/>
+                <ControlPanel
+                    controlInfo=            {controlInfo}
+                    onControlButtonClicked= {onControlButtonClicked}/>
+            </header>
 
-            <div className="game-controls">
+            <main>
+                {   // Render GameField
+                    ((displayMode=="DISPLAY_GAME") && (gameState.currentState==="STATE_END")) &&
+                    <div>
+                        {victory ? "Victory" : "Defeat"}
+                    </div>
+                }
 
-                {/*SETTINGS*/}
-                <ControlButton
-                    className="control-exit"
-                    buttonState={getButtonState("Settings",gameState,sceneState)}
-                    labelText="Options"
-                    onClickFunction={()=>{setSceneState("SETUP")}}
-                />
+                {   // Render GameField
+                    (displayMode=="DISPLAY_GAME") &&
+                    <GameField 
+                        logicField=     {gameState.logicField}
+                        onCellClicked=  {onCellClicked}/>
+                }
 
-                {/*SCORE*/}
-                <ControlButton
-                    className="control-score"
-                    buttonState={getButtonState("Score",gameState,sceneState)}
-                    labelText="Score"
-                    onClickFunction={()=>{setSceneState("SCORE")}}
-                />
- 
-                {/*RESTART+GAMEON*/}
-                <ControlButton
-                    className="control-game"
-                    buttonState={getButtonState("Game",gameState,sceneState)}
-                    labelText="Play"
-                    onClickFunction={()=>{onGameButtonClicked()}}
-                />
- 
-                {/*TIMER*/}
-                <div className="control-item control-timer">
-                    <Timer state={timerState}
-                            functionGetTimeVal={functionGetTimeVal}
-                            functionResetTimeVal={functionResetTimeVal}
-                    />
-                    <div className="contol-label">Timer</div>
-                </div>
-                
-                {/*END GAME*/}
-                <ControlButton
-                    className="control-submit"
-                    buttonState={getButtonState("Done",gameState,sceneState)}
-                    labelText="Finish"
-                    onClickFunction={()=>{functionEndGame.current()}}
-                />
+                {   // Render Options
+                    (displayMode=="DISPLAY_SETTINGS") &&
+                    <Options
+                        changeDifficultySettings= {changeDifficultySettings}/>
+                }
 
-                {/*CLICK REVEAL*/}
-                <ControlButton
-                    className="control-click"
-                    buttonState={getButtonState("Open",gameState,clickMode)}
-                    labelText="Open"
-                    onClickFunction={()=>{setClickMode("DEFAULT");}}
-                />
-                
-                {/*CLICK FLAG*/}
-                <ControlButton
-                    className="control-click"
-                    buttonState={getButtonState("Mark",gameState,clickMode)}
-                    labelText="Mark"
-                    onClickFunction={()=>{setClickMode("FLAG");}}
-                />
-            </div>
+                {   // Render ScoreTable
+                    (displayMode=="DISPLAY_SCORE") &&
+                    <ScoreTable/>
+                }
 
-            {/* SCORE AREA*/}
-            <ScoreTable
-                isVisible={isAreaVisible("SCORE",sceneState)}
-                bestScore={bestScore}
-                lastScore={lastScore}
-            />
-         
-           {/* OPTIONS AREA */}
-            <Options
-                isVisible={isAreaVisible("OPTIONS",sceneState)}
-                setterGameSettings={setGameSettings}
-                functionOnSubmit={setCustomSettings}
-            />
+                {   // Render Info
+                    (displayMode=="DISPLAY_INFO") &&
+                    <InfoPanel/>
+                }
+            </main>
 
-
-           <div className={`game-area ${ isAreaVisible("GAME",sceneState) ? "" : "hidden"}`} >
-                <div className="game-info">
-                        <div className="info-state">
-                            <div>Status: {gameState}</div>
-                        </div>
-
-                        <div className="info-flags">
-                            <div>Flags: {numberOfFlaggedCells}/{gameSettings.numberOfCols*gameSettings.numberOfRows-numberOfRevealedCells}</div>
-                        </div>
-
-                        <div className="info-cells">
-                            <div>Opened: {numberOfRevealedCells}/{gameSettings.numberOfCols*gameSettings.numberOfRows}</div>
-                        </div>
-
-                        <div className="info-boms">
-                            <div>Bombs: {gameSettings.numberOfBombsMin}-{gameSettings.numberOfBombsMax}</div>
-                        </div>
-
-                        <div className="info-check">
-                            <div>Size: {gameSettings.numberOfCols}x{gameSettings.numberOfRows}</div>
-                        </div>
-                </div>
-
-
-                <GameField 
-                        settings={gameSettings}
-                        clickMode={clickMode}
-
-                        callbackGameStarted={() =>  {onGameStarted()}}
-                        callbackGameUpdated={(info) => {updateGameInfo(info)}}
-                        callbackGameFinished={(victory) => {onGameFinished(victory)}}
-                        callbackGameRestarted={() => {}}
-
-                        state={gameState}
-                        functionRestartGame={functionRestartGame}
-                        functionEndGame={functionEndGame}
-                />
-
-
-
-            </div>
         </div>
-
-
-
-
     );
 }
 
