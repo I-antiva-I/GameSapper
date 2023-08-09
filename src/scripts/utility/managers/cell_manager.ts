@@ -102,7 +102,7 @@ export function adjustCellLowerPart(state: CellState,
         > isFlagged
         > isBomb
         > bombCount
-    TEXT: ⚙️ 🏆 🕹️ ✔️ 🎯 🚩 🔄 ❌ 💣
+    TEXT: 
 
 
 
