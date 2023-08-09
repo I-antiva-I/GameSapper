@@ -1,6 +1,6 @@
 // ⚙️ 🏆 🕹️ ✔️ 🎯 🚩 🔄 ❌ 💣
 
-import { FieldSettings } from "../game_logic/game_settings";
+import { FieldSettings } from "../game_logic/game_process";
 
 // Get random number
 export function getRandomNumber(minValue: number, maxValue: number) 
