@@ -13,43 +13,55 @@ body
 {
     min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    flex-start;
+    align-items:        center;
 
     background-color: #696969;
 }
 
+
+
 .app
 {
-    width: 350px;
-    max-width: 350px;
+    margin-top: 2rem;
 
+    width: 100%;
+    max-width: 470px;
+
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
+
+    border: 2px dashed red;
+}
+
+.wrapper
+{
     display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: stretch;
+
 }
 
 header
 {
     border: 2px dashed hotpink;
-    
 
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        stretch;
+    flex-wrap:          wrap;
+    gap:                0.25rem 0.75rem;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
+    padding: 0.25rem;
 }
-.control-panel
+.wrapper.for-control-panel
 {
-    flex: 0 0 auto;
+    width: 100%;
 }
 .my-header
 {
-    min-width: 200px;
-    flex: 1000 0 auto;
+    width: 100%;
 }
