@@ -6,14 +6,16 @@ import ControlPanel from "./control/ControlPanel";
 import GameField from "./game/GameField";
 import ScoreTable from "./other/ScoreTable";
 import Information from "./other/Information";
-import Settings from "./other/Settings";
+import Settings from "./settings/Settings";
 
 // Import: classes, enums and functions
-import { GamePhase, GameState } from "../scripts/game_logic/game_state";
+import { GamePhase, GameState, GameResult } from "../scripts/game_logic/game_process";
 import { LogicField } from "../scripts/game_logic/logic_field";
-import { FieldSettings } from "../scripts/game_logic/game_settings"
+import { FieldSettings } from "../scripts/game_logic/game_process"
 import { ClickMode, ControlButtonAction, DisplayMode } from "../scripts/utility/core";
 import { CoordinatePair } from "../scripts/game_logic/logic_cell";
+import Victory from "./other/Victory";
+import Timer from "./other/Timer";
 
 
 
@@ -34,6 +36,16 @@ function PlayScene()
         setGameState(new GameState(phase, new LogicField(fieldSettings)));
     }, 
     [fieldSettings]); 
+
+
+    let getResult = () =>
+    {
+        let bombs = gameState.logicField.numberOfBombs;
+        let cells = gameState.logicField.numberOfColumns * gameState.logicField.numberOfRows;
+        console.log(cells, bombs);
+        return new GameResult(bombs, cells, 3600);
+        //JSON.stringify(yourObject);
+    }
     
     // Functions
     let onCellClicked = (coordinates: CoordinatePair) =>
@@ -122,17 +134,28 @@ function PlayScene()
     return(
         <div className="play-scene">
             <header>
-                {"HEADER PLACEHOLDER "+GamePhase[gameState.phase]+" WIN:"+victory}
-            </header>
-
-            <main>
-
+                <MyHeader/>
                 <ControlPanel
                     phase={                 gameState.phase}
                     clickMode=              {clickMode}
                     displayMode=            {displayMode}
                     onControlButtonClicked= {onControlButtonClicked}/>
+            </header>
 
+            <main>
+                {
+                    //"HEADER PLACEHOLDER "+GamePhase[gameState.phase]+" WIN:"+victory
+                }
+
+                <Timer></Timer>
+
+                {   
+                    // Win
+                    ((displayMode === DisplayMode.GAME) && (gameState.phase === GamePhase.END)) &&
+                    <Victory 
+                        result={getResult()}
+                        victory={victory}/>
+                }
                 {   
                     // GameField
                     (displayMode === DisplayMode.GAME) &&
@@ -159,11 +182,6 @@ function PlayScene()
                     (displayMode === DisplayMode.SCORE) &&
                     <ScoreTable/>
                 }
-
-
-
-
-
             </main>
 
         </div>
