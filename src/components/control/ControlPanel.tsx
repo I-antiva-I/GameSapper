@@ -1,7 +1,7 @@
 import React from "react";
 import ControlButton from "./ControlButton";
 import { ClickMode, ControlButtonAction, DisplayMode } from "../../scripts/utility/core";
-import { GamePhase } from "../../scripts/game_logic/game_state";
+import { GamePhase } from "../../scripts/game_logic/game_process";
 import { isControlButtonDisplayed } from "../../scripts/utility/managers/button_manager";
 
 
