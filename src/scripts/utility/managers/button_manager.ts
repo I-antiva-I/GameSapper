@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import { GamePhase } from "../../game_logic/game_state";
+import { GamePhase } from "../../game_logic/game_process";
 import { ControlButtonAction, DisplayMode } from "../core";
 import React from "react";
 
-// 
+// Determines if control button should be displayed
 export function isControlButtonDisplayed(buttonAction: ControlButtonAction, 
     displayMode: DisplayMode, phase: GamePhase)
 {

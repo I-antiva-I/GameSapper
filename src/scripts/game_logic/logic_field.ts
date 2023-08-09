@@ -1,6 +1,6 @@
 import {CellState, CoordinatePair, LogicCell} from "./logic_cell";
 import {getRandomNumber, shuffleArray} from "../utility/core"
-import { FieldSettings } from "./game_settings";
+import { FieldSettings } from "./game_process";
 
 class LogicField 
 {
