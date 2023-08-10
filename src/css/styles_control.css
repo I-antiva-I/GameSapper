@@ -1,3 +1,13 @@
+
+
+.wrapper.for-control-panel
+{
+    background-color: #424242;
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
+
+}
+
 .control-panel
 {
     width: 100%;
@@ -7,53 +17,169 @@
     justify-content:    center;
     align-items:        center;
  
-    padding-inline: 1rem;
-    margin: 1rem;
 
-    gap: 8px;
+    margin: 0.5rem;
 
-    border: 2px dashed mediumaquamarine;
+    gap: 12px;
+
+    bo1rder: 2px dashed gainsboro;
 }
 
 .wrapper.for-control-button
 {
-    bo1rder: 2px dashed blue;
+
     flex-direction: column;
-    gap: 4px;
-}
-.control-button-wrapper.hidden
-{
-    display: none;
-}
+    gap: 6px;
 
-.control-button-label
-{
-    width: 100%;
-    background-color:  maroon;
-    border: 2px solid black;
-    border-radius: 4px;
+    opacity: 1;
 
-    font-size: 0.75rem;
-
-    text-align: center;
-    color: white;
-    margin: 2px 0;
-    padding: 2px 0;
+    animation-name: example;
+    animation-duration: 1s;
 }
 
 
 .control-button
 {
-    display: flex;
+    width:  4.5rem;
+    height: 4.5rem;
 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
 
-    width: 64px;
-    height: 64px;
     border-radius: 4px;
+
     border: none;
 
     font-size: 2rem;
+    background-color:  gainsboro;
+    position: relative;
+
+
+
+}
+
+@keyframes example {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+
+
+
+.control-button-label
+{
+    width: 100%;
+
+    margin:     2px 0;
+    padding:    2px;
+
+    border-radius: 2px;
+    background-color:  white;
+
+    color: white;
+    font-size: 0.875rem;
+    text-align: center;
+
+    position: relative;
+    background: conic-gradient(
+        white 45deg, black 46deg,
+        black 135deg, white 136deg,
+        white 225deg, black 226deg,
+        black 315deg, white 316deg
+  
+    )
+}
+
+
+.control-button-label:hover
+{
+    color: mediumspringgreen;
+    box-shadow:
+    rgba(0, 250, 150, 0.5) 0px 0px 8px 2px;
+
+
+    background: conic-gradient(
+        mediumspringgreen 45deg, black 46deg,
+        black 135deg, mediumspringgreen 136deg,
+        mediumspringgreen 225deg, black 226deg,
+        black 315deg, mediumspringgreen 316deg
+  
+    )
+}
+
+
+/*
+
+
+
+
+.control-button-label::before
+{
+    background: linear-gradient(
+        180deg,
+        gold 5%,
+        gold 25%,
+ 
+        gold 75%,
+        gold 95%
+      );
+      background: black;
+      border-radius: inherit;
+      content: "";
+      inset: 0px;
+      opacity: 1;
+      position: absolute;
+      transition: opacity 400ms;
+      z-index: 0;
+
+      width: 40%;
+      border-top-right-radius: 100%;
+      border-bottom-right-radius: 100%;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+
+
+}
+.control-button-label::after
+{
+    background: linear-gradient(
+        180deg,
+        white 5%,
+        white 25%,
+        transparent 25%,
+        transparent 50%,
+        transparent 75%,
+        white 75%,
+        white 95%
+      );
+      background: gold;
+      background: black;
+      border-top-right-radius:      4px;
+      border-bottom-right-radius:   4px;
+      border-top-left-radius:       100%;
+      border-bottom-left-radius:    100%;
+      content: "";
+      inset: 0px;
+      opacity: 1;
+      position: absolute;
+      transition: opacity 400ms;
+      z-index: 0;
+
+      width: 40%;
+      left: 60%;
+}
+
+
+*/
+
+
+.control-button-label div
+{
+    position: relative;
+    padding: 1px;
+    background-color:  black;
+    z-index: 1;
+    border-radius: 2px;
 }

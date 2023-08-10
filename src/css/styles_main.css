@@ -21,47 +21,71 @@ body
     background-color: #696969;
 }
 
+/* Wrappers */
+.wrapper
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+}
+.wrapper.for-app            {width: 100%;}
+.wrapper.for-control-panel  {width: 100%;}
+.wrapper.for-game-field     {width: 100%;}
 
 
 .app
 {
-    margin-top: 2rem;
+    margin-inline: 2rem;
+    margin-block:  2rem;
 
-    width: 100%;
-    max-width: 470px;
+    width:      100%;
+    max-width:  600px;
 
     display:            flex;
     flex-direction:     column;
     justify-content:    center;
     align-items:        center;
 
-    border: 2px dashed red;
+    bo1rder: 2px dashed red;
 }
 
-.wrapper
+.play-scene
 {
-    display: flex;
+    width:              100%;
 
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
 }
+
+
+
+
 
 header
 {
-    border: 2px dashed hotpink;
+    width:      100%;
+
+    bor1der: 2px dashed hotpink;
 
     display:            flex;
     flex-direction:     row;
     justify-content:    center;
     align-items:        stretch;
     flex-wrap:          wrap;
-    gap:                0.25rem 0.75rem;
 
-    padding: 0.25rem;
+    gap:                0.5rem;
 }
-.wrapper.for-control-panel
+
+main
 {
-    width: 100%;
+    width:      100%;
 }
+
 .my-header
 {
     width: 100%;
+    display: flex;
 }

@@ -4,23 +4,40 @@
 {
     position: relative;
     width: 100%;
-
-    border-radius: 10px;
     overflow: hidden;
 
-
+    background-color: #424242;
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
 }
+
+
+
+
 .my-header
 {
+    flex: 1 0 100%;
     font-size: 1.5rem;
-    color: white;  
-    background: black;
-
-    
-    border-radius: 6px;
+    color: white;
+    z-index: 1;
 }
+
 h1
 {
-    margin-inline: 1rem;
+
+    margin-inline: 2rem;
+}
+
+
+
+.wrapper.for-information
+{
+    margin-top: 0.5rem;
+    color: white;
+    background-color: #424242;
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
+        
+    padding: 1rem 2rem 3rem;
 }
 

@@ -9,6 +9,9 @@ import "./css/styles_game.css"
 import "./css/styles_control.css"
 import "./css/styles_other.css"
 
+// WIP
+import "./css/styles_wip.css"
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>

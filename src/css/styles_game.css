@@ -1,9 +1,15 @@
+
 /* GameField.tsx */
 .wrapper.for-game-field
 {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     
-    border: 2px dashed lime;
+    bo1rder: 2px dashed lime;
+
+    padding: 1rem;
+    background-color: #424242;
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
 }
 
 
@@ -16,7 +22,7 @@
 
     width: 100%;
 
-    gap: 4px;
+    gap: 6px;
 }
 
 
@@ -33,11 +39,11 @@
 
 
     border-radius: 4px;
-    bo0rder: 2px dashed red;
+
     border: none;
     overflow: hidden;
     box-shadow:
-        rgba(0, 0, 0, 0.25) 0px 2px 3px;
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
 
 
     transition: 
@@ -86,7 +92,8 @@
 .cell-lower-part
 {
     color: white;
-    background-image: linear-gradient(180deg,#424242,#212121);
+    ba1ckground-image: linear-gradient(180deg,#424242,#212121);
+    background-color: #212121;
 }
 
 
@@ -95,35 +102,35 @@
 
 
 /* GameCell with digits */
-.game-cell.opened.digit-1
+.game-cell.opened.digit-1 .cell-lower-part
 {
     color: var(--color-digit-1);
 }
-.game-cell.opened.digit-2
+.game-cell.opened.digit-2 .cell-lower-part
 {
     color: var(--color-digit-2);
 }
-.game-cell.opened.digit-3
+.game-cell.opened.digit-3 .cell-lower-part
 {
     color: var(--color-digit-3);
 }
-.game-cell.opened.digit-4
+.game-cell.opened.digit-4 .cell-lower-part
 {
     color: var(--color-digit-4);
 }
-.game-cell.opened.digit-5
+.game-cell.opened.digit-5 .cell-lower-part
 {
     color: var(--color-digit-5);
 }
-.game-cell.opened.digit-6
+.game-cell.opened.digit-6 .cell-lower-part
 {
     color: var(--color-digit-6);
 }
-.game-cell.opened.digit-7
+.game-cell.opened.digit-7 .cell-lower-part
 {
     color: var(--color-digit-7);
 }
-.game-cell.opened.digit-8
+.game-cell.opened.digit-8 .cell-lower-part
 {
     color: var(--color-digit-8);
 }
@@ -137,6 +144,7 @@
 {
     background-color: #424242;
     color: black;
+    border: 2px solid black;
     transition: 
     background-color 0.25s  ease-in,
     color            0.125s ease-in 0.125s
@@ -144,8 +152,7 @@
 }
 .game-cell.closed
 {
-    /*background-image: linear-gradient(to bottom, gainsboro,silver);*/
-    background-color: silver;
+    border: 2px solid black;
     color: black;
     transition: 
         background-color 0.125s  ease-in,;
@@ -160,17 +167,22 @@
     color            0.125s ease-in 0.125s
     ;
 }
-.game-cell.triggered
+.game-cell.triggered .cell-lower-part
 {
     background-color: crimson;
 }
-.game-cell.defused
+.game-cell.defused .cell-lower-part
 {
     background-color: seagreen;
 }
-.game-cell.mistaken
+.game-cell.mistaken .cell-lower-part
 {
     background-color: goldenrod;
 }
+.game-cell.exploded .cell-lower-part
+{
+    background-color: crimson;
+}
+
 
 
