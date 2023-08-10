@@ -1,4 +1,18 @@
-/* GameField */
+
+/* GameField.tsx */
+.wrapper.for-game-field
+{
+    margin-top: 0.5rem;
+    
+    bo1rder: 2px dashed lime;
+
+    padding: 1rem;
+    background-color: #424242;
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
+}
+
+
 .game-field
 {
     display: grid;
@@ -8,7 +22,7 @@
 
     width: 100%;
 
-    gap: 4px;
+    gap: 6px;
 }
 
 
@@ -18,53 +32,105 @@
     width:      2.75rem;
     height:     2.75rem;
 
+    position: relative;
+
     font-size:      1.25rem;
     font-weight:    800;
 
 
     border-radius: 4px;
-    border: 2px solid #212121;
-    box-shadow:
-        rgba(0, 0, 0, 0.25) 0px 2px 3px;
 
-    color: transparent;
+    border: none;
+    overflow: hidden;
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
+
 
     transition: 
         background-color 0.25s  ease-in,
         color            0.125s ease-in 0.125s ;
 }
+.cell-upper-part,
+.cell-lower-part
+{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 1;
+    transition: 
+    opacity 0.25s ease-in,
+    visibility 0s ease-in 0.25s;
+}
+
+
+.game-cell.closed .cell-lower-part
+{
+    visibility: hidden;
+    opacity: 0;
+}
+.game-cell.opened .cell-upper-part
+{
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+.cell-upper-part
+{
+    color: black;
+    background-image: linear-gradient(180deg,#dcdcdc,silver);
+}
+.cell-lower-part
+{
+    color: white;
+    ba1ckground-image: linear-gradient(180deg,#424242,#212121);
+    background-color: #212121;
+}
+
+
+
+
 
 
 /* GameCell with digits */
-.game-cell.opened.digit-1
+.game-cell.opened.digit-1 .cell-lower-part
 {
     color: var(--color-digit-1);
 }
-.game-cell.opened.digit-2
+.game-cell.opened.digit-2 .cell-lower-part
 {
     color: var(--color-digit-2);
 }
-.game-cell.opened.digit-3
+.game-cell.opened.digit-3 .cell-lower-part
 {
     color: var(--color-digit-3);
 }
-.game-cell.opened.digit-4
+.game-cell.opened.digit-4 .cell-lower-part
 {
     color: var(--color-digit-4);
 }
-.game-cell.opened.digit-5
+.game-cell.opened.digit-5 .cell-lower-part
 {
     color: var(--color-digit-5);
 }
-.game-cell.opened.digit-6
+.game-cell.opened.digit-6 .cell-lower-part
 {
     color: var(--color-digit-6);
 }
-.game-cell.opened.digit-7
+.game-cell.opened.digit-7 .cell-lower-part
 {
     color: var(--color-digit-7);
 }
-.game-cell.opened.digit-8
+.game-cell.opened.digit-8 .cell-lower-part
 {
     color: var(--color-digit-8);
 }
@@ -78,6 +144,7 @@
 {
     background-color: #424242;
     color: black;
+    border: 2px solid black;
     transition: 
     background-color 0.25s  ease-in,
     color            0.125s ease-in 0.125s
@@ -85,8 +152,7 @@
 }
 .game-cell.closed
 {
-    /*background-image: linear-gradient(to bottom, gainsboro,silver);*/
-    background-color: silver;
+    border: 2px solid black;
     color: black;
     transition: 
         background-color 0.125s  ease-in,;
@@ -101,17 +167,22 @@
     color            0.125s ease-in 0.125s
     ;
 }
-.game-cell.triggered
+.game-cell.triggered .cell-lower-part
 {
     background-color: crimson;
 }
-.game-cell.defused
+.game-cell.defused .cell-lower-part
 {
     background-color: seagreen;
 }
-.game-cell.mistaken
+.game-cell.mistaken .cell-lower-part
 {
     background-color: goldenrod;
 }
+.game-cell.exploded .cell-lower-part
+{
+    background-color: crimson;
+}
+
 
 

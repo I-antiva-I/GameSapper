@@ -13,43 +13,79 @@ body
 {
     min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    flex-start;
+    align-items:        center;
 
     background-color: #696969;
 }
 
+/* Wrappers */
+.wrapper
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+}
+.wrapper.for-app            {width: 100%;}
+.wrapper.for-control-panel  {width: 100%;}
+.wrapper.for-game-field     {width: 100%;}
+
+
 .app
 {
-    width: 350px;
-    max-width: 350px;
+    margin-inline: 2rem;
+    margin-block:  2rem;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: stretch;
+    width:      100%;
+    max-width:  600px;
+
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
+
+    bo1rder: 2px dashed red;
 }
+
+.play-scene
+{
+    width:              100%;
+
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
+}
+
+
+
+
 
 header
 {
-    border: 2px dashed hotpink;
-    
+    width:      100%;
 
+    bor1der: 2px dashed hotpink;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        stretch;
+    flex-wrap:          wrap;
+
+    gap:                0.5rem;
 }
-.control-panel
+
+main
 {
-    flex: 0 0 auto;
+    width:      100%;
 }
+
 .my-header
 {
-    min-width: 200px;
-    flex: 1000 0 auto;
+    width: 100%;
+    display: flex;
 }
