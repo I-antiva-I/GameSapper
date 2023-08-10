@@ -21,7 +21,8 @@ function ControlButton(props: ControlButtonProps)
             </button>
 
             <div className="control-button-label">
-                {adjustControlButtonLabelText(props.buttonAction)}
+                <div>{adjustControlButtonLabelText(props.buttonAction)}</div>
+                
             </div>   
         </div>
     )
