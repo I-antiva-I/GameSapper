@@ -18,10 +18,11 @@ function Settings(props: {setFieldSettings: Function})
                     isContentVisible={true}
                     groupHeader="Difficulty"
                     groupClassName="difficulty">
-
+                    <button onClick={()=>{props.setFieldSettings(getDifficultySettings(Difficulty.VERY_EASY))}}>Very Easy</button>
                     <button onClick={()=>{props.setFieldSettings(getDifficultySettings(Difficulty.EASY))}}>Easy</button>
                     <button onClick={()=>{props.setFieldSettings(getDifficultySettings(Difficulty.MEDIUM))}}>Medium</button>
                     <button onClick={()=>{props.setFieldSettings(getDifficultySettings(Difficulty.HARD))}}>Hard</button>
+                    <button onClick={()=>{props.setFieldSettings(getDifficultySettings(Difficulty.VERY_HARD))}}>Very Hard</button>
                     <SettingsGroup
                         isSubGroup={true}
                         isContentVisible={true}
