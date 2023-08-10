@@ -39,6 +39,11 @@ export function adjustCellClass(state: CellState,
     if (isOpened)
     {
         classes+= " opened";
+        if      (state === CellState.TRIGGERED)         {classes+= " triggered";}
+        else if (state === CellState.MISTAKEN)          {classes+= " mistaken";}
+        else if (state === CellState.DEFUSED)           {classes+= " defused";}
+        else if (state === CellState.EXPLODED)          {classes+= " exploded";}
+        else    {{classes+= (" digit-"+bombCount.toString());}}
     }
     else
     {
@@ -51,7 +56,14 @@ export function adjustCellClass(state: CellState,
 // Returns inner HTML element for upper part of cell
 export function adjustCellUpperPart(isOpened: boolean, isFlagged: boolean) : ReactNode 
 {
-    return React.createElement("div", {} , "");
+    if (isFlagged)
+    {
+        return React.createElement("div", {} , "🚩");
+    }
+    else
+    {
+        return React.createElement("div", {} , "");
+    }
 }
 
 // Returns inner HTML element for lower part of cell
@@ -61,26 +73,24 @@ export function adjustCellLowerPart(state: CellState,
     //console.log("!");
     if (isOpened)
     {
-        if (isBomb) {return React.createElement("div", {} , "💣");}
-        else        {return React.createElement("div", {} , bombCount);}
-    }
-    else if (isFlagged)
-    {
-
+        if      (state === CellState.TRIGGERED)          {return React.createElement("div", {} , "💥");}
+        else if (state === CellState.MISTAKEN)           {return React.createElement("div", {} , "❌");}
+        else if (isBomb)              {return React.createElement("div", {} , "💣");}
+        else if (bombCount>0)         {return React.createElement("div", {} , bombCount);}
+        else                          {return React.createElement("div", {} , "");}
     }
     else
     {
-
+        return React.createElement("div", {} , "?");
     }
-    return React.createElement("div", {} , "?");
 }
     //return (<div></div>);
     /*
 
     if (cellInfo.isOpened)
     {
-        if      (cellInfo.state==="exploded")       {return <div>{"💥"}</div>;}
-        else if (cellInfo.state==="mistaken")       {return <div>{"❌"}</div>;}
+        if      (cellInfo.state==="exploded")       {return <div>{""}</div>;}
+        else if (cellInfo.state==="mistaken")       {return <div>{""}</div>;}
         else if (cellInfo.isBomb)                   {return <div>{"💣"}</div>;}
         else if (cellInfo.bombCount>0)              {return <div>{cellInfo.bombCount}</div>;}
         else                                        {return <div>{""}</div>;}
