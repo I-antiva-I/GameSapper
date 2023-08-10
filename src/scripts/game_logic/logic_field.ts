@@ -67,7 +67,7 @@ class LogicField
         if (foundCell)
         {
             foundCell.toggleFlag();
-            this.numberOfFlaggedCells += ((-1) ** Number(foundCell.isFlagged))
+            this.numberOfFlaggedCells += ((-1) ** Number(!foundCell.isFlagged))
         }
     }
 
@@ -90,7 +90,7 @@ class LogicField
                     currentCell.isOpened=true;
                     openedCells++;
 
-                    if (currentCell.isFlagged)   {currentCell.toggleFlag()}
+                    if (currentCell.isFlagged)   {this.flagCell(currentCell.coordinates)}
 
                     if (currentCell.isBomb)
                     {
