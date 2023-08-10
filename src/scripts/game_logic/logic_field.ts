@@ -94,7 +94,7 @@ class LogicField
 
                     if (currentCell.isBomb)
                     {
-                        currentCell.state = CellState.EXPLODED;
+                        currentCell.state = CellState.TRIGGERED;
                         this.numberOfRevealedCells += openedCells;
                         return false;
                     }
