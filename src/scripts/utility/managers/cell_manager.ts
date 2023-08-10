@@ -2,35 +2,6 @@ import { ReactNode } from "react";
 import { CellState } from "../../game_logic/logic_cell";
 import React from "react";
 
-    /*
-// Returns class/classes depending on cell info
-export function adjustCellClass(cellInfo)
-{
-    if (cellInfo.isOpened)
-    {
-        let className="opened";
-
-        if(!cellInfo.isBomb)
-        {
-            if      (cellInfo.state==="mistaken")   {className=className+" mistaken";}
-            else if (cellInfo.bombCount>0)          {className=className+" digit-"+cellInfo.bombCount;}  
-        }
-        else
-        {
-            if      (cellInfo.state==="defused")    {className=className+" defused";}
-            else if (cellInfo.state==="triggered")  {className=className+" triggered";}
-            else if (cellInfo.state==="exploded")   {className=className+" exploded";}
-            
-        }
-        return className;
-    }
-    else
-    {
-        return "closed";
-    }
-}
-*/
-
 // Returns class/classes depending on cell info
 export function adjustCellClass(state: CellState, 
     isOpened:boolean, isFlagged: boolean, isBomb: boolean, bombCount: number) : String
