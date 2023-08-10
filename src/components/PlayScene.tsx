@@ -5,7 +5,7 @@ import MyHeader from "./other/MyHeader";
 import ControlPanel from "./control/ControlPanel";
 import GameField from "./game/GameField";
 import ScoreTable from "./other/ScoreTable";
-import Information from "./other/Information";
+import Information from "./information/Information";
 import Settings from "./settings/Settings";
 
 // Import: classes, enums and functions
@@ -145,9 +145,10 @@ function PlayScene()
             <main>
                 {
                     //"HEADER PLACEHOLDER "+GamePhase[gameState.phase]+" WIN:"+victory
+                    //         <Timer></Timer>
                 }
 
-                <Timer></Timer>
+        
 
                 {   
                     // Win
