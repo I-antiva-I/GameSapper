@@ -1,30 +1,13 @@
 
 # Saper
-<p>
-    <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/I-antiva-I/GameSaper">
-    <img alt="GitHub last commit (by committer)" src="https://img.shields.io/github/last-commit/I-antiva-I/GameSaper">
-</p>
+![GitHub repo size](https://img.shields.io/github/repo-size/I-antiva-I/GameSaper?style=for-the-badge)
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/I-antiva-I/GameSaper?style=for-the-badge)
 
 ## Description
-<p>
-	# TODO
-</p>
+TODO
 
 ## Languages and Tools
-<p align="left">
-    <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/>
-  </a>
-  
-  <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/>
-  </a> 
-  
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> 
-  </a> 
-  
-  <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> 
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> 
-  </a>
-</p>
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-696969?style=for-the-badge&logo=react&logoColor=61DAFB)
