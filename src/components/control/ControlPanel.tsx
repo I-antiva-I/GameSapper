@@ -1,8 +1,9 @@
 import React from "react";
 import ControlButton from "./ControlButton";
 import { ClickMode, ControlButtonAction, DisplayMode } from "../../scripts/utility/core";
-import { GamePhase } from "../../scripts/game_logic/game_process";
+import { GamePhase, GameResult } from "../../scripts/game_logic/game_process";
 import { isControlButtonDisplayed } from "../../scripts/utility/managers/button_manager";
+import GameEnd from "./GameEnd";
 
 
 interface ControlPanelProps
@@ -11,11 +12,19 @@ interface ControlPanelProps
     clickMode:              ClickMode;
     displayMode:            DisplayMode,
     onControlButtonClicked: Function,
+    result: 
+    {
+        currentScore: GameResult,
+        isNewBestScore: boolean,
+    },
 }
 
 
 function ControlPanel(props: ControlPanelProps)
 {
+    console.log("PR", props.result)
+    console.log("PRt", typeof(props.result))
+
     return(
         <div className="wrapper for-control-panel">
             <div className="control-panel">   
@@ -53,6 +62,16 @@ function ControlPanel(props: ControlPanelProps)
                         buttonAction=           {ControlButtonAction.RESTART}
                         onControlButtonClicked= {props.onControlButtonClicked}/>
                 }     
+
+                {   
+                    // Win ---------------------------------------
+                    ((props.displayMode === DisplayMode.GAME) &&
+                        (props.phase === GamePhase.END) &&
+                            (props.result !== undefined)) &&
+                    <GameEnd 
+                        result= {props.result}/>
+                }
+
 
                 {
                     (isControlButtonDisplayed(ControlButtonAction.RETURN, props.displayMode, props.phase)) &&
