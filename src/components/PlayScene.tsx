@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // Import: components
-import MyHeader from "./other/MyHeader";
+import MyHeader from "./header/MyHeader";
 import ControlPanel from "./control/ControlPanel";
 import GameField from "./game/GameField";
 import ScoreTable from "./other/ScoreTable";
@@ -14,48 +14,87 @@ import { LogicField } from "../scripts/game_logic/logic_field";
 import { FieldSettings } from "../scripts/game_logic/game_process"
 import { ClickMode, ControlButtonAction, DisplayMode } from "../scripts/utility/core";
 import { CoordinatePair } from "../scripts/game_logic/logic_cell";
-import Victory from "./other/Victory";
-import Timer from "./other/Timer";
+import GameEnd from "./control/GameEnd";
+import Timer from "./header/Timer";
 
 
 
 function PlayScene()
 {   
-    // States
+    // UseStates
     let [fieldSettings, setFieldSettings] = useState(new FieldSettings(5, 3, 3, 3, 1));
-    let [gameState, setGameState] = useState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings)));
+    let [gameState, setGameState] = useState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
     let [clickMode, setClickMode] = useState(ClickMode.OPEN_CELL);
     let [displayMode, setDisplayMode] = useState(DisplayMode.GAME);
-    let [victory, setVictory] = useState(false);
+    let [timePassed, setTimePassed]= useState(0);
+   
+    let result = useRef<any>(undefined);
 
-
-
+    // UseEffects
     useEffect(() => 
-    {
-        let phase = gameState.phase;    // IDLE
-        setGameState(new GameState(phase, new LogicField(fieldSettings)));
-    }, 
-    [fieldSettings]); 
+        {
+            setGameState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
+        }, [fieldSettings]); 
+        /*
+    useEffect(() => 
+        {
+            if (gameState.phase === GamePhase.END)
+            {
+                result.current=getResult();
+            }
+        }, [gameState]); 
+*/
 
-
-    let getResult = () =>
+    // Functions
+    let getResult = (victory: boolean, logicField: LogicField) =>
     {
-        let bombs = gameState.logicField.numberOfBombs;
-        let cells = gameState.logicField.numberOfColumns * gameState.logicField.numberOfRows;
-        console.log(cells, bombs);
-        return new GameResult(bombs, cells, 3600);
-        //JSON.stringify(yourObject);
+        let currentScore = new GameResult(victory, logicField.numberOfBombs, 
+                                        logicField.numberOfRows,
+                                        logicField.numberOfColumns, 
+                                        timePassed, 
+                                        new Date());
+        
+        localStorage.setItem("LAST_SCORE", JSON.stringify(currentScore));
+        let isNewBestScore = true;
+        let bestScoreString = localStorage.getItem("BEST_SCORE");
+
+        console.log("GR BS", localStorage.getItem("BEST_SCORE"));
+
+        if (bestScoreString !== null)
+        {
+            try
+            {
+                let bestScore = JSON.parse(bestScoreString) as GameResult ;
+                if (currentScore.isGreaterThan(bestScore))
+                {
+                    localStorage.setItem("BEST_SCORE", JSON.stringify(currentScore));
+                }
+                else
+                {
+                    isNewBestScore = false;
+                }
+            }
+            catch (error: unknown)
+            {
+                localStorage.removeItem("BEST_SCORE");
+                localStorage.setItem("BEST_SCORE", JSON.stringify(currentScore));
+            }
+        }
+        //renders.current++; ,renders.current
+        console.log("R", isNewBestScore, currentScore, localStorage.getItem("BEST_SCORE"));
+        return {isNewBestScore: isNewBestScore, currentScore: currentScore};
     }
     
-    // Functions
     let onCellClicked = (coordinates: CoordinatePair) =>
     {
-        console.log("Received", coordinates);
-
         // Current GameState
         let logicField =    gameState.logicField;
         let phase =         gameState.phase;
+        let victory =       gameState.victory;
         
+
+        console.log("COORS", coordinates);
+
         // Generate field if the first cell is clicked
         if (phase === GamePhase.IDLE)
         {
@@ -68,9 +107,9 @@ function PlayScene()
         {
             if (!logicField.openCell(coordinates))
             {
-                let victory = logicField.endGame();
+                victory = logicField.endGame();
                 phase =  GamePhase.END;
-                setVictory(victory);
+                result.current = getResult(victory, logicField)
             }
         }
         else
@@ -78,13 +117,11 @@ function PlayScene()
             logicField.flagCell(coordinates);
         }
         
-        setGameState(new GameState(phase, logicField));
-        console.log(logicField);
+        setGameState(new GameState(phase, logicField, victory));
     }
 
     let onControlButtonClicked = (buttonAction: ControlButtonAction) =>
     {
-        console.log("CB", ControlButtonAction[buttonAction]);
         switch(buttonAction)
         {
             case ControlButtonAction.INFO:
@@ -114,15 +151,15 @@ function PlayScene()
             case ControlButtonAction.END_GAME:
                 let logicField = gameState.logicField;
                 let victory = logicField.endGame();
-                console.log(victory);
-                setVictory(victory);
-                setGameState(new GameState(GamePhase.END, logicField));
+                result.current = getResult(victory, logicField)
+                
+                setGameState(new GameState(GamePhase.END, logicField, victory));
                 break;
     
             case ControlButtonAction.RESTART:
             case ControlButtonAction.RETURN:
-                setClickMode(ClickMode.OPEN_CELL);
-                setGameState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings)));
+                //setClickMode(ClickMode.OPEN_CELL); (!!!)
+                setGameState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
                 break;
     
             default:     
@@ -134,29 +171,24 @@ function PlayScene()
     return(
         <div className="play-scene">
             <header>
-                <MyHeader/>
+                <MyHeader
+                    fieldSettings=          {fieldSettings}
+                    numberOfRevealedCells=  {gameState.logicField.numberOfRevealedCells}
+                    numberOfFlaggedCells=   {gameState.logicField.numberOfFlaggedCells}
+                    phase=                  {gameState.phase}
+                    setTimePassed=          {setTimePassed}
+                    timePassed=             {timePassed}
+                />
                 <ControlPanel
-                    phase={                 gameState.phase}
+                    phase=                  {gameState.phase}
                     clickMode=              {clickMode}
                     displayMode=            {displayMode}
-                    onControlButtonClicked= {onControlButtonClicked}/>
+                    onControlButtonClicked= {onControlButtonClicked}
+                    result=                 {result.current}
+                    
+                    />
             </header>
-
-            <main>
-                {
-                    //"HEADER PLACEHOLDER "+GamePhase[gameState.phase]+" WIN:"+victory
-                    //         <Timer></Timer>
-                }
-
-        
-
-                {   
-                    // Win
-                    ((displayMode === DisplayMode.GAME) && (gameState.phase === GamePhase.END)) &&
-                    <Victory 
-                        result={getResult()}
-                        victory={victory}/>
-                }
+            <main>        
                 {   
                     // GameField
                     (displayMode === DisplayMode.GAME) &&
