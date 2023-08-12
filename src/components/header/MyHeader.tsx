@@ -21,19 +21,21 @@ function MyHeader(props: MyHeaderProps)
 
     return(
         <div className="wrapper for-my-header">
-            <div className="wrapper for-game-title">
-                <div className="game-title">
-                    <h1>SAPPER</h1>
+            <div className="my-header">
+                <div className="wrapper for-game-title">
+                    <div className="game-title">
+                        <h1>SAPPER</h1>
+                    </div>
                 </div>
+                <GameInfo
+                    fieldSettings=          {props.fieldSettings}
+                    numberOfRevealedCells=  {props.numberOfRevealedCells}
+                    numberOfFlaggedCells=   {props.numberOfFlaggedCells}
+                    phase=                  {props.phase}
+                    setTimePassed=          {props.setTimePassed}
+                    timePassed=             {props.timePassed}
+                    />
             </div>
-            <GameInfo
-                fieldSettings=          {props.fieldSettings}
-                numberOfRevealedCells=  {props.numberOfRevealedCells}
-                numberOfFlaggedCells=   {props.numberOfFlaggedCells}
-                phase=                  {props.phase}
-                setTimePassed=          {props.setTimePassed}
-                timePassed=             {props.timePassed}
-                />
         </div>
     )
 }
