@@ -1,0 +1,101 @@
+.wrapper.for-settings
+{
+    margin-top: 0.5rem;
+
+    padding-block:      1.5rem;
+    padding-inline:     1.5rem;
+
+    background-color: #424242;
+    color: white;
+
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
+}
+
+.information
+{
+
+}
+
+
+.settings h2
+{
+    font-size: 2rem;
+}
+
+
+.settings-group-header
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        center;
+    
+    gap: 0.5rem;
+
+}
+
+
+.settings-group-header .wrapper.for-header-icon
+{
+    width: 2rem;
+    height: 2rem;
+}
+.settings-group-header .header-icon
+{
+    width: 1.5rem;
+    height: 1.5rem;
+
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+
+    transform: rotate(90deg);
+}
+.settings-group-header h3
+{
+    font-size: 1.5rem;
+}
+
+
+
+.settings-group.visible .header-icon
+{
+    transform: rotate(180deg);
+}
+
+
+.settings-group.visible .settings-group-content
+{
+  
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
+
+    margin-inline:  2.5rem 0;
+
+}
+
+
+.settings-group.hidden .settings-group-content
+{
+  display: none;
+}
+
+
+.settings-group.visible .settings-group-content.difficulty
+{
+    display:            grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-content:    stretch;
+    align-items:        stretch;
+
+    gap: 12px;
+}
+
+.settings-group.sub-group.custom-difficulty.visible
+{
+    grid-column: span 5;
+}

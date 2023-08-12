@@ -1,0 +1,22 @@
+.wrapper
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+}
+
+.wrapper.for-app            {width: 100%;}
+
+.wrapper.for-my-header      {width: 100%;}
+.wrapper.for-game-title     {width: auto;}
+
+.wrapper.for-game-info      {width: 100%;}
+.game-info                  {width: 100%;}
+
+.wrapper.for-control-panel  {width: 100%;}
+.wrapper.for-game-field     {width: 100%;}
+
+
+.wrapper.for-information    {width: 100%;}
+.information                {width: 100%;}

@@ -1,0 +1,121 @@
+/* MyHeader.tsx */
+.wrapper.for-my-header
+{
+    box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 2px 4px;
+}
+.my-header
+{
+    width:  100%;
+    display: flex;
+}
+.wrapper.for-game-title
+{
+    background-color: gainsboro;
+    color: black;
+
+}
+.game-title
+{
+    margin-inline: 1.5rem;
+
+}
+
+
+
+
+
+.game-title h1
+{
+    margi1n-inline: 2rem 0.5rem;
+    font-size: 4rem;
+}
+
+
+
+.wrapper.for-game-info
+{
+
+    color: white;
+    background-color: #424242;
+}
+
+
+.game-info
+{
+    margin-block:   0.75rem;
+    margin-inline:  1.5rem;
+
+
+    font-size: 1rem;
+
+    display: grid;
+    grid-template-columns: 2rem auto 5rem auto 2rem auto 3rem;
+    grid-template-rows: 2rem 2rem;
+    justify-content:    stretch;
+    align-items:        stretch;
+    gap:  8px;
+
+}
+
+.game-info-icon
+{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+   
+    padding: 2px;
+    border-radius: 4px;
+    background-color:   white;
+}
+.game-info-label
+{
+    display:            flex;
+    justify-content:    flex-start;
+    align-items:        center;
+   
+    color: white;
+    background-color:    black;
+
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+}
+.game-info-value
+{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+   
+    background-color:   white;
+    color: black;
+    border-radius: 4px;
+    
+    padding: 0.125rem 0.5rem;
+}
+
+
+
+.game-info-item
+{
+    display: flex;
+    flex-direction:     row;
+    gap: 8px;
+}
+
+
+.wrapper.for-timer
+{
+    grid-row: 1/ span 2;
+    grid-column: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+   
+    color: white;
+    background-color:    black;
+    border-radius: 4px;
+
+
+}

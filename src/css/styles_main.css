@@ -8,7 +8,6 @@
     font-family: "Titillium Web";
 }
 
-
 body
 {
     min-height: 100vh;
@@ -18,21 +17,8 @@ body
     justify-content:    flex-start;
     align-items:        center;
 
-    background-color: #696969;
+    background-color: #212121;
 }
-
-/* Wrappers */
-.wrapper
-{
-    display:            flex;
-    flex-direction:     row;
-    justify-content:    center;
-    align-items:        center;
-}
-.wrapper.for-app            {width: 100%;}
-.wrapper.for-control-panel  {width: 100%;}
-.wrapper.for-game-field     {width: 100%;}
-
 
 .app
 {
@@ -40,14 +26,12 @@ body
     margin-block:  2rem;
 
     width:      100%;
-    max-width:  600px;
+    max-width:  950px;
 
     display:            flex;
     flex-direction:     column;
     justify-content:    center;
     align-items:        center;
-
-    bo1rder: 2px dashed red;
 }
 
 .play-scene
@@ -60,15 +44,9 @@ body
     align-items:        center;
 }
 
-
-
-
-
 header
 {
     width:      100%;
-
-    bor1der: 2px dashed hotpink;
 
     display:            flex;
     flex-direction:     row;
@@ -84,8 +62,3 @@ main
     width:      100%;
 }
 
-.my-header
-{
-    width: 100%;
-    display: flex;
-}
