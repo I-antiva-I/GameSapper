@@ -15,13 +15,8 @@ interface TimerProps
 
 function Timer(props: TimerProps)
 {
-    //console.log(props.phase)
-
     // Timer
-    //let [timePassed, setTimePassed]= useState(0);
     let timePassedInterval = useRef<number | undefined>(undefined);
-
-    
 
     let startTimer = () =>
     {
@@ -54,6 +49,7 @@ function Timer(props: TimerProps)
             }
             else if (props.phase === GamePhase.IN_PROGRESS)
             {
+                props.setTimePassed(0);
                 startTimer();
             }
             else if (props.phase === GamePhase.END)
@@ -69,7 +65,6 @@ function Timer(props: TimerProps)
     let [timeNow, setTimeNow] = useState<Date>(new Date());
     let timeNowInterval = useRef<number | undefined>(undefined);
 
-
     useEffect(() => 
     {
         timeNowInterval.current = window.setInterval(()=> {setTimeNow(new Date())}, 1000);
@@ -84,18 +79,25 @@ function Timer(props: TimerProps)
     let minutes = (Math.floor(props.timePassed/60)).toString().padStart(2,"0");
     let seconds = (props.timePassed%60).toString().padStart(2,"0");
     
+
+
     return(
-        <div className="time-container">
-            <div className="time-icon">
-                {time+"-"+date}
-            </div>
-            <div className="time-value" id="g-timer">
+        <div className="wrapper for-timer">
+            <div className="timer">
                 {
-                    minutes+":"+seconds
+                    (props.phase === GamePhase.IDLE) ?
+                    <section>
+                        <div className="timer-upper-part">{date}</div>
+                        <div className="timer-lower-part">{time}</div>
+                    </section> 
+                    :
+                    <section>
+                        <div className="timer-upper-part">Time</div>
+                        <div className="timer-lower-part">{minutes+":"+seconds}</div>
+                    </section>
+                    
                 }
-               
             </div>
-       
         </div>
     )
 
