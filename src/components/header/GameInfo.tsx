@@ -15,34 +15,21 @@ interface GameInfoProps
 
 function GameInfo(props : GameInfoProps)
 {
-    //console.log(props.phase)
-
     return(
         <div className="wrapper for-game-info">
             <div className="game-info">
-                <div className="game-info-icon">❌</div>
-                <div className="game-info-label">Size</div>
-                <div className="game-info-value">
-                    {
-                        props.fieldSettings.numberOfRows+"x"+props.fieldSettings.numberOfColumns
-                    }
-                </div>
-                    
                 <Timer
                     setTimePassed={props.setTimePassed}
                     phase={props.phase}
                     timePassed=             {props.timePassed}
                     />
 
-                <div className="game-info-icon">✔️</div>
-                <div className="game-info-label">Opened</div>
+                <div className="game-info-icon"><i className="fa-solid fa-table-cells"></i></div>
+                <div className="game-info-label">Size</div>
                 <div className="game-info-value">
-                    {
-                        props.numberOfRevealedCells+
-                        "/"+props.fieldSettings.numberOfRows*props.fieldSettings.numberOfColumns
-                    }
+                    {props.fieldSettings.numberOfRows+"x"+props.fieldSettings.numberOfColumns}
                 </div>
-                
+
                 <div className="game-info-icon">💣</div>
                 <div className="game-info-label">Bombs</div>
                 <div className="game-info-value">
@@ -52,13 +39,20 @@ function GameInfo(props : GameInfoProps)
                          props.fieldSettings.numberOfBombsMin+"-"+props.fieldSettings.numberOfBombsMax
                     }
                 </div>
+                    
+      
+                <div className="game-info-icon">✔️</div>
+                <div className="game-info-label">Opened</div>
+                <div className="game-info-value">
+                    {props.numberOfRevealedCells+"/"+props.fieldSettings.numberOfRows*props.fieldSettings.numberOfColumns}
+                </div>
+                
+
 
                 <div className="game-info-icon">🚩</div>
                 <div className="game-info-label">Flags</div>
                 <div className="game-info-value">
-                    {
-                        props.numberOfFlaggedCells
-                    }
+                    {props.numberOfFlaggedCells}
                 </div>
             </div>
         </div>
