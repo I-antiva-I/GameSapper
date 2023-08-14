@@ -9,10 +9,6 @@ interface TimerProps
     timePassed: number
 }
 
-// https://github.com/TypeStrong/atom-typescript/issues/1053
-// https://www.kindacode.com/article/react-typescript-setinterval/
-
-
 function Timer(props: TimerProps)
 {
     // Timer
@@ -61,47 +57,25 @@ function Timer(props: TimerProps)
         }, [props.phase]);
 
 
-    // Clock
-    let [timeNow, setTimeNow] = useState<Date>(new Date());
-    let timeNowInterval = useRef<number | undefined>(undefined);
-
-    useEffect(() => 
-    {
-        timeNowInterval.current = window.setInterval(()=> {setTimeNow(new Date())}, 1000);
-
-        return () => {clearInterval(timeNowInterval.current);};                        
-    }, []);
-
-
     // Display values
-    let time    = timeNow.toLocaleTimeString();
-    let date    = timeNow.toLocaleDateString();
     let minutes = (Math.floor(props.timePassed/60)).toString().padStart(2,"0");
     let seconds = (props.timePassed%60).toString().padStart(2,"0");
     
-
-
     return(
         <div className="wrapper for-timer">
             <div className="timer">
-                {
-                    (props.phase === GamePhase.IDLE) ?
-                    <section>
-                        <div className="timer-upper-part">{date}</div>
-                        <div className="timer-lower-part">{time}</div>
-                    </section> 
-                    :
-                    <section>
-                        <div className="timer-upper-part">Time</div>
-                        <div className="timer-lower-part">{minutes+":"+seconds}</div>
-                    </section>
-                    
-                }
+                <div className="timer-upper-part">Time</div>
+                <div className="timer-lower-part">{minutes+":"+seconds}</div>
             </div>
         </div>
     )
-
-
 }
 
 export default Timer;
+
+// + More info here +
+// https://github.com/TypeStrong/atom-typescript/issues/1053
+// https://www.kindacode.com/article/react-typescript-setinterval/
+// https://www.youtube.com/watch?v=26ogBZXeBwc&ab_channel=DaveGray
+
+
