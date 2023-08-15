@@ -1,6 +1,7 @@
 import React from "react"
 import Timer from "./Timer";
 import { FieldSettings, GamePhase } from "../../scripts/game_logic/game_process";
+import Clock from "./Clock";
 
 interface GameInfoProps
 {
@@ -12,19 +13,23 @@ interface GameInfoProps
     timePassed: number,
 }
 
-
 function GameInfo(props : GameInfoProps)
 {
     return(
         <div className="wrapper for-game-info">
             <div className="game-info">
-                <Timer
-                    setTimePassed={props.setTimePassed}
-                    phase={props.phase}
-                    timePassed=             {props.timePassed}
+                {
+                    (props.phase === GamePhase.IDLE) ?
+                    <Clock/>
+                    :
+                    <Timer
+                    setTimePassed=      {props.setTimePassed}
+                    phase=              {props.phase}
+                    timePassed=         {props.timePassed}
                     />
-
-                <div className="game-info-icon"><i className="fa-solid fa-table-cells"></i></div>
+                }
+             
+                <div className="game-info-icon">❌</div>
                 <div className="game-info-label">Size</div>
                 <div className="game-info-value">
                     {props.fieldSettings.numberOfRows+"x"+props.fieldSettings.numberOfColumns}
@@ -59,6 +64,5 @@ function GameInfo(props : GameInfoProps)
         
     )
 }
-
 
 export default GameInfo;
