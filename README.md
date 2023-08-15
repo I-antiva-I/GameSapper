@@ -4,7 +4,11 @@
 ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/I-antiva-I/GameSaper?style=for-the-badge)
 
 ## Description
-TODO
+Sapper is a logic puzzle game.
+
+The playing field consists from grid, which is divided into clickable cells and can be opened. Some of these cells contain hidden bombs. If there is no bomb under the open cell, then a number appears in it, displaying how many cells adjacent to the newly opened cell have bomb.
+
+The objective is to open the board without detonating any mines
 
 ## Languages and Tools
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
