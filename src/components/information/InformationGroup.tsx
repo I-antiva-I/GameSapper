@@ -1,8 +1,5 @@
 import React, {useState} from "react";
-
-import headerIcon from "../../images/icons/arrow-up.svg";
-
-
+import headerIcon from "../../images/icons/angle-up-solid.svg";
 
 interface InformationGroupProps
 {
@@ -11,7 +8,6 @@ interface InformationGroupProps
     groupClassName:     String,
     children:           React.ReactNode,
 }
-
 
 function InformationGroup(props: InformationGroupProps)
 {
@@ -23,13 +19,15 @@ function InformationGroup(props: InformationGroupProps)
 
     return(
         <div className={"information-group "+props.groupClassName+((isContentVisible) ? " visible" : " hidden" )}>
+            
             <div className={"information-group-header"} onClick={()=>{onHeaderClicked()}}>
                 <div className="wrapper for-header-icon">
                     <img className="header-icon" src={headerIcon}/>
                 </div>
                 <h3>{props.groupHeader}</h3>
             </div>
-            <div className={"information-group-content "+props.groupClassName}>
+
+            <div className={"information-group-content wrapper for-"+props.groupClassName}>
                 {props.children}
             </div>
         </div>
