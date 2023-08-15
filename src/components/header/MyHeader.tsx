@@ -3,7 +3,6 @@ import Timer from "./Timer";
 import GameInfo from "./GameInfo";
 import { FieldSettings, GamePhase } from "../../scripts/game_logic/game_process";
 
-
 interface MyHeaderProps
 {
     fieldSettings: FieldSettings,
@@ -14,11 +13,8 @@ interface MyHeaderProps
     timePassed: number,
 }
 
-
 function MyHeader(props: MyHeaderProps)
 {
-    //console.log(props.phase)
-
     return(
         <div className="wrapper for-my-header">
             <div className="my-header">
@@ -39,6 +35,5 @@ function MyHeader(props: MyHeaderProps)
         </div>
     )
 }
-
 
 export default MyHeader;
