@@ -2,7 +2,6 @@ import React from "react";
 import { GameResult } from "../../scripts/game_logic/game_process";
 import ScoreResult from "./ScoreResult";
 
-
 function ScoreTable()
 {   
     let bestString = localStorage.getItem("BEST_SCORE");
@@ -20,25 +19,33 @@ function ScoreTable()
         lastScore = JSON.parse(lastString) as GameResult;
     }
 
-    console.log(bestScore, bestString) ;
-    console.log(bestScore, bestString) ;
+    //console.log(bestScore, bestString) ;
+    //console.log(bestScore, bestString) ;
 
 
     return(
         <div className="wrapper for-score-table">
             <div className="score-table">
                 <h2>SCORE</h2>
+
                 <div className="last-score">
-                    {(lastScore !== undefined) ? <ScoreResult result={lastScore}/> : "NO LAST"}
+                    <h3>Last Score</h3>
+                    {
+                        (lastScore !== undefined) ? <ScoreResult result={lastScore}/> : 
+                        <div>No information about last score</div>
+                        }
                 </div>
 
                 <div className="best-score">
-                    {(bestScore !== undefined) ? <ScoreResult result={bestScore}/> : "NO BEST"}
+                    <h3>Best Score</h3>
+                    {
+                        (bestScore !== undefined) ? <ScoreResult result={bestScore}/> :
+                        <div>No information about best score</div>
+                    }
                 </div>
             </div>
         </div>
     )
 }
-
 
 export default ScoreTable;
