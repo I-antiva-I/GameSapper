@@ -1,6 +1,8 @@
 import React from "react";
 import InformationGroup from "./InformationGroup";
-
+import AboutInfo from "./AboutInfo";
+import OtherInfo from "./OtherInfo";
+import HowToInfo from "./HowToInfo";
 
 function Information()
 {
@@ -8,20 +10,31 @@ function Information()
         <div className="wrapper for-information">
             <div className="information">
                 <h2>INFORMATION</h2>
+
                 <InformationGroup
-                    isContentVisible={true}
-                    groupHeader={"About the game"}
-                    groupClassName={"about"}
-                >
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur quo perspiciatis suscipit officia est, maiores, nam, hic dolore eaque ullam laboriosam iusto ab. Architecto ad vitae sapiente quidem aut veritatis voluptatibus assumenda sunt perferendis facilis rerum inventore cupiditate praesentium velit nihil, odio distinctio similique atque dolorum quam beatae quaerat accusamus repellat quis? Sed iusto placeat sapiente sit unde facere error incidunt quisquam hic quod est, dicta itaque doloremque delectus necessitatibus autem nostrum, aspernatur molestias rem iste neque officia. Fugiat, eaque in. Aperiam amet doloremque excepturi possimus repudiandae qui optio quis et dolores. Consequuntur, dolorem! Distinctio fugiat voluptas debitis ut facilis!
-                    </p>
+                    isContentVisible=   {true}
+                    groupHeader=        "About the game"
+                    groupClassName=     "about-info">
+                    <AboutInfo/>
+                </InformationGroup>
+
+                <InformationGroup
+                    isContentVisible=   {false}
+                    groupHeader=        "How to play"
+                    groupClassName=     "how-to-info">
+                    <HowToInfo/>
+                </InformationGroup>
+
+                <InformationGroup
+                    isContentVisible=   {false}
+                    groupHeader=        "Other"
+                    groupClassName=     "other-info">
+                    <OtherInfo/>
                 </InformationGroup>
 
             </div>
         </div>
     )
 }
-
 
 export default Information;
