@@ -19,6 +19,7 @@ The objective is to open the board without detonating any mines
 ## ToDo List
 - [ ] Rework CSS
 - [ ] Responsive CSS (mobile)
+- [ ] CSS animations
 - [ ] Remember user's settings
 - [ ] Add color themes settings
 - [ ] Add cell size settings
