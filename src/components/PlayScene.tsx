@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import MyHeader from "./header/MyHeader";
 import ControlPanel from "./control/ControlPanel";
 import GameField from "./game/GameField";
-import ScoreTable from "./other/ScoreTable";
+import ScoreTable from "./score/ScoreTable";
 import Information from "./information/Information";
 import Settings from "./settings/Settings";
 
@@ -14,10 +14,6 @@ import { LogicField } from "../scripts/game_logic/logic_field";
 import { FieldSettings } from "../scripts/game_logic/game_process"
 import { ClickMode, ControlButtonAction, DisplayMode } from "../scripts/utility/core";
 import { CoordinatePair } from "../scripts/game_logic/logic_cell";
-import GameEnd from "./control/GameEnd";
-import Timer from "./header/Timer";
-
-
 
 function PlayScene()
 {   
@@ -28,22 +24,23 @@ function PlayScene()
     let [displayMode, setDisplayMode] = useState(DisplayMode.GAME);
     let [timePassed, setTimePassed]= useState(0);
    
+    // UseRefs
     let result = useRef<any>(undefined);
 
     // UseEffects
     useEffect(() => 
         {
             setGameState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
+            setClickMode(ClickMode.OPEN_CELL);
         }, [fieldSettings]); 
-        /*
+  
     useEffect(() => 
         {
             if (gameState.phase === GamePhase.END)
             {
-                result.current=getResult();
+                setClickMode(ClickMode.OPEN_CELL);
             }
         }, [gameState]); 
-*/
 
     // Functions
     let getResult = (victory: boolean, logicField: LogicField) =>
