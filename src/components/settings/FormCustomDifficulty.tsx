@@ -15,7 +15,6 @@ interface FormCustomDifficultyProps
     setFieldSettings: Function,
 }
 
-
 function FormCustomDifficulty(props : FormCustomDifficultyProps)
 {
     
@@ -27,7 +26,6 @@ function FormCustomDifficulty(props : FormCustomDifficultyProps)
         safeZoneRadius:     1,
     });
 
-    console.log(typeof(props.setFieldSettings))
     let onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => 
     {
         event.preventDefault();
@@ -39,10 +37,6 @@ function FormCustomDifficulty(props : FormCustomDifficultyProps)
             formData.numberOfBombsMin,
             formData.numberOfBombsMax,
             formData.safeZoneRadius));
-        
-
-
-        
     }
 
     let onInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -58,39 +52,43 @@ function FormCustomDifficulty(props : FormCustomDifficultyProps)
     }
 
     return(
-        <form onSubmit={onFormSubmit}>
-            <label htmlFor="rows">Number of rows</label>
-            <input type="number" id="number-of-rows" min="1" max="8" 
-                    name="numberOfRows"
-                    value={formData.numberOfRows} 
-                    onChange={onInputValueChange}/>
+        <div className="custom-difficulty">
+            <form onSubmit={onFormSubmit}>
 
-            <label htmlFor="number-of-columns">Number of columns</label>
-            <input type="number" id="number-of-columns" min="1" max="8"
-                    name="numberOfColumns"
-                    value={formData.numberOfColumns}
-                    onChange={onInputValueChange}/>
+                <label htmlFor="rows">Number of rows</label>
+                <input type="number" id="number-of-rows" min="1" max="8" 
+                        name="numberOfRows"
+                        value={formData.numberOfRows} 
+                        onChange={onInputValueChange}/>
 
-            <label htmlFor="a">Minimum number of bombs</label>
-            <input type="number" id="number-of-bombs-min" min="1" max="8"
-                    name="numberOfBombsMin"
-                    value={formData.numberOfBombsMin}
-                    onChange={onInputValueChange}/>
+                <label htmlFor="number-of-columns">Number of columns</label>
+                <input type="number" id="number-of-columns" min="1" max="8"
+                        name="numberOfColumns"
+                        value={formData.numberOfColumns}
+                        onChange={onInputValueChange}/>
 
-            <label htmlFor="cols">Maximum number of bombs</label>
-            <input type="number" id="number-of-bombs-max" min="1" max="8" 
-                    name="numberOfBombsMax"
-                    value={formData.numberOfBombsMax}
-                    onChange={onInputValueChange}/>
+                <label htmlFor="a">Minimum number of bombs</label>
+                <input type="number" id="number-of-bombs-min" min="1" max="8"
+                        name="numberOfBombsMin"
+                        value={formData.numberOfBombsMin}
+                        onChange={onInputValueChange}/>
 
-            <label htmlFor="cols">Safe zone radius</label>
-            <input type="number" id="safe-zone-radius" min="1" max="8" 
-                    name="safeZoneRadius"
-                    value={formData.safeZoneRadius}
-                    onChange={onInputValueChange}/>
+                <label htmlFor="cols">Maximum number of bombs</label>
+                <input type="number" id="number-of-bombs-max" min="1" max="8" 
+                        name="numberOfBombsMax"
+                        value={formData.numberOfBombsMax}
+                        onChange={onInputValueChange}/>
 
-            <input type="submit" value="Submit" />
-        </form>
+                <label htmlFor="cols">Safe zone radius</label>
+                <input type="number" id="safe-zone-radius" min="1" max="8" 
+                        name="safeZoneRadius"
+                        value={formData.safeZoneRadius}
+                        onChange={onInputValueChange}/>
+
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+
     )
 }
 
