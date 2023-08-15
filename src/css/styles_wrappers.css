@@ -17,6 +17,11 @@
 .wrapper.for-control-panel  {width: 100%;}
 .wrapper.for-game-field     {width: 100%;}
 
-
 .wrapper.for-information    {width: 100%;}
 .information                {width: 100%;}
+
+.wrapper.for-settings       {width: 100%;}
+.settings                   {width: 100%;}
+
+.wrapper.for-difficulty     {width: 100%;}
+.difficulty                 {width: 100%;}

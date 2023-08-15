@@ -1,6 +1,4 @@
-
-
-
+/* Information.tsx */
 .wrapper.for-information
 {
     margin-top: 0.5rem;
@@ -17,38 +15,63 @@
 
 .information
 {
-
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
+    
 }
-
 
 .information h2
 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    margin-right: auto;
 }
 
+/* InformationGroup.tsx */
+.information-group
+{
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        flex-start;
+
+    width: 100%;
+}
+
+.information-group ~ .information-group
+{
+    margin-top: 0.5rem;
+}
+
+.information-group.hidden .information-group-content
+{
+    display: none;
+}
 
 .information-group-header
 {
     display:            flex;
     flex-direction:     row;
     justify-content:    flex-start;
-    align-items:        center;
+    align-items:        stretch;
     
     gap: 0.5rem;
-
 }
-
 
 .information-group-header .wrapper.for-header-icon
 {
-    width: 2rem;
-    height: 2rem;
+    width:      2rem;
+    height:     2rem;
+
+    margin: auto 0;
+
+    border-radius: 4px;
 }
+
 .information-group-header .header-icon
 {
-    width: 1.5rem;
-    height: 1.5rem;
-
+ 
     display:            flex;
     flex-direction:     row;
     justify-content:    center;
@@ -56,33 +79,27 @@
 
     transform: rotate(90deg);
 }
+
 .information-group-header h3
 {
-    font-size: 1.5rem;
+    font-size:  1.75rem;
+
+    background-color:   white;
+    color:              black;
+
+    padding: 0.125rem 0.75rem;
+
+    border-radius: 4px;
 }
 
-
-
-.information-group.visible .header-icon
+.information-group-content
 {
-    transform: rotate(180deg);
-}
-
-
-.information-group.visible .information-group-content
-{
-  
     display:            flex;
-    flex-direction:     column;
+    flex-direction:     row;
     justify-content:    center;
-    align-items:        center;
-
-    margin-inline:  2.5rem 0;
-
+    align-items:        center;  
+    
+    font-size: 1.375rem;
 }
 
 
-.information-group.hidden .information-group-content
-{
-  display: none;
-}
