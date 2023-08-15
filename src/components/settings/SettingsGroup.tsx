@@ -1,8 +1,5 @@
 import React, {useState} from "react";
-
-import headerIcon from "../../images/icons/arrow-up.svg";
-
-
+import headerIcon from "../../images/icons/angle-up-solid.svg";
 
 interface SettingsGroupProps
 {
@@ -13,7 +10,6 @@ interface SettingsGroupProps
     children:           React.ReactNode,
 }
 
-
 function SettingsGroup(props: SettingsGroupProps)
 {
     let [isContentVisible, setIsContentVisible] = useState(props.isContentVisible);
@@ -23,15 +19,19 @@ function SettingsGroup(props: SettingsGroupProps)
     }
 
     return(
-        <div className={"settings-group "+(props.isSubGroup ? "sub-group " : "main-group ")+props.groupClassName}>
+        <div className={"settings-group"+
+                        ((props.isSubGroup) ? " sub-group" : " main-group")+
+                        " group-"+props.groupClassName+
+                        ((isContentVisible) ? " visible" : " hidden" )}>
+
             <div className={"settings-group-header"} onClick={()=>{onHeaderClicked()}}>
-                <div>
-                    <img src={headerIcon} style={{width: "16px", height: "16px"}}/>
+                <div className="wrapper for-header-icon">
+                    <img className="header-icon" src={headerIcon}/>
                 </div>
                 {(props.isSubGroup) ?  <h4>{props.groupHeader}</h4> : <h3>{props.groupHeader}</h3>}
             </div>
-            <div className={"settings-group-content "+props.groupClassName}
-                    style={{display: (isContentVisible) ? "flex" : "none"}}>
+
+            <div className={"settings-group-content wrapper for-"+props.groupClassName}>
                 {props.children}
             </div>
         </div>

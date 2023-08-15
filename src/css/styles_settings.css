@@ -1,0 +1,140 @@
+/* Settings.tsx */
+.wrapper.for-settings
+{
+    margin-top: 0.5rem;
+
+    padding-block:      1.5rem;
+    padding-inline:     1.5rem;
+
+    background-color:   #424242;
+    color:              white;
+
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
+}
+
+.settings
+{
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
+    
+}
+
+.settings h2
+{
+    font-size: 2.5rem;
+    margin-right: auto;
+}
+
+/* SettingsGroup.tsx */
+.settings-group
+{
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        flex-start;
+
+    width: 100%;
+}
+
+.settings-group ~ .settings-group
+{
+    margin-top: 0.5rem;
+}
+
+
+.settings-group.hidden .settings-group-content
+{
+    display: none;
+}
+
+.settings-group-header
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        center;
+    
+    gap: 0.5rem;
+
+}
+
+.settings-group-header .wrapper.for-header-icon
+{
+    width:      2rem;
+    height:     2rem;
+
+    margin: auto 0;
+
+    border-radius: 4px;
+}
+
+.settings-group-header .header-icon
+{
+ 
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+
+    transform: rotate(90deg);
+}
+
+.settings-group-header h3
+{
+    font-size:  1.75rem;
+
+    background-color:   white;
+    color:              black;
+
+    padding: 0.125rem 0.75rem;
+
+    border-radius: 4px;
+}
+
+.settings-group-content
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;  
+    
+    font-size: 1.375rem;
+}
+
+
+/* Difficulty.tsx */
+.wrapper.for-difficulty
+.difficulty
+{
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        stretch; 
+
+    padding: 4px;
+}
+
+.basic-difficulty
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        center;
+
+    gap: 0.5rem;
+}
+
+.basic-difficulty button
+{
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center; 
+
+    flex: 1 0 auto;
+
+    padding: 0.25rem 0.5rem;
+}

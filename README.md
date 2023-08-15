@@ -1,5 +1,5 @@
 
-# Saper
+# Sapper
 ![GitHub repo size](https://img.shields.io/github/repo-size/I-antiva-I/GameSaper?style=for-the-badge)
 ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/I-antiva-I/GameSaper?style=for-the-badge)
 

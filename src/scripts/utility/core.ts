@@ -75,26 +75,34 @@ export function getCurrentDate()
   return currentDate;
 }
 
-export enum Difficulty
+export enum GameDifficulty
 {
+  VERY_EASY,
   EASY,
   MEDIUM,
   HARD,
+  VERY_HARD,
 }
 
 // Default field settings for all difficulties
-export function getDifficultySettings(difficulty: Difficulty)
+export function getDifficultySettings(difficulty: GameDifficulty)
 {
   switch(difficulty)
   {
-    case Difficulty.EASY:
-      return new FieldSettings(4,4,2,2,2);
+    case GameDifficulty.VERY_EASY:
+      return new FieldSettings(5,5,2,2,2);
 
-    case Difficulty.MEDIUM:
-      return new FieldSettings(6,6,8,12,2);
+    case GameDifficulty.EASY:
+      return new FieldSettings(7,7,8,12,2);
+
+    case GameDifficulty.MEDIUM:
+      return new FieldSettings(15,15,28,32,3);
   
-    case Difficulty.HARD:
-      return new FieldSettings(8,8,14,18,2);
+    case GameDifficulty.HARD:
+      return new FieldSettings(15,21,40,48,3);
+
+      case GameDifficulty.VERY_HARD:
+        return new FieldSettings(15,31,99,99,4);
 
     default:
       return new FieldSettings(2,2,1,1,1);

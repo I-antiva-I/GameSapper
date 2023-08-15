@@ -12,23 +12,32 @@
         rgba(0, 0, 0, 0.25) 0px 2px 4px;
 }
 
-
 .game-field
 {
     display: grid;
 
-    justify-content: center;
+    justify-content: flex-start; /* ! */
     align-items: center;
 
-    width: 100%;
+    width: auto;
 
     gap: 6px;
-}
 
+    overflow:auto;
+    overscroll-behavior: contain;
+    padding: 1rem !important;
+    scroll-snap-type: mandatory;
+    bor1der: 2px dashed red;
+    
+    scroll-snap-type: inline mandatory;
+    scroll-padding: 6px;
+}
 
 /* GameCell */
 .game-cell
 {
+    scroll-snap-align: start;
+
     width:      2.75rem;
     height:     2.75rem;
 
@@ -50,6 +59,7 @@
         background-color 0.25s  ease-in,
         color            0.125s ease-in 0.125s ;
 }
+
 .cell-upper-part,
 .cell-lower-part
 {
@@ -71,35 +81,30 @@
     visibility 0s ease-in 0.25s;
 }
 
-
 .game-cell.closed .cell-lower-part
 {
     visibility: hidden;
     opacity: 0;
 }
+
 .game-cell.opened .cell-upper-part
 {
     visibility: hidden;
     opacity: 0;
 }
 
-
 .cell-upper-part
 {
     color: black;
     background-image: linear-gradient(180deg,#dcdcdc,silver);
 }
+
 .cell-lower-part
 {
     color: white;
     ba1ckground-image: linear-gradient(180deg,#424242,#212121);
     background-color: #212121;
 }
-
-
-
-
-
 
 /* GameCell with digits */
 .game-cell.opened.digit-1 .cell-lower-part
@@ -134,9 +139,6 @@
 {
     color: var(--color-digit-8);
 }
-
-
-
 
 
 /* GameCell states*/
