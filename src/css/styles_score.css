@@ -3,9 +3,6 @@
 {
     margin-top: 0.5rem;
 
-    padding-block:      1.5rem;
-    padding-inline:     1.5rem;
-
     background-color: #424242;
     color: white;
 
@@ -17,48 +14,79 @@
 {
     width: 100%;
     
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0rem  0.75rem;
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;
+
 }
 
-.score-table h2
+.score-table-header
+{
+    width: 100%;
+
+    padding: 1rem 2rem;
+
+    background-color:   dimgray;
+    color:              white;
+}
+
+.score-table-header h2
 {
     font-size: 2.5rem;
-
-    grid-column: 1/span 2;
 }
 
-.score-table h3
+.score-table-content
+{
+    width: 100%;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+
+    padding: 2rem 2rem;
+}
+
+/* ScoreResult.tsx */
+.score-result
+{
+
+}
+
+.score-result-header
+{
+    padding: 0.5rem 0.75rem;
+    background-color: black;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.score-result-header h3
 {
     font-size:  1.75rem;
-    text-align: center;
+    color: white;
+}
+
+.result-victory h4
+{
+    font-size:  1.5rem;
+    color: mediumspringgreen;
+}
+
+.result-defeat h4
+{    
+    font-size:  1.5rem;
+    color: crimson;
 }
 
 .score-result-content
 {
     display: grid;
-    grid-template-columns: 32px auto auto;
-    grid-template-rows: auto 32px 32px 32px 32px;
-    gap: 0.75rem;
-}
+    grid-template-columns:      32px auto auto;
+    grid-template-rows:         32px 32px 32px 32px 32px;
+    gap:    0.75rem;
 
-.result-victory,
-.result-defeat
-{
-    grid-column: 1/ span 3;
-    font-size:  1.5rem;
-}
-
-.score-result-value.result-victory
-{
-    background-color: black;
-    color: mediumspringgreen;
-}
-.score-result-value.result-defeat
-{
-    background-color: black;
-    color: crimson;
+    margin-top: 0.75rem;
 }
 
 .score-result-icon,
@@ -72,7 +100,6 @@
     border-radius: 4px;
 }
 
-
 .score-result-icon
 {
     background-color: white;
@@ -84,7 +111,7 @@
     color: white;
 
     justify-content: flex-start;
-    padding: 0 1rem;
+    padding: 0rem 1rem;
 }
 
 .score-result-value
@@ -94,3 +121,4 @@
 
     padding: 0 1rem;
 }
+

@@ -32,7 +32,10 @@ export function shuffleArray(array: any[])
   }
 
   return array;
+
 }
+
+
 
 export enum ClickMode
 {
@@ -59,20 +62,6 @@ export enum ControlButtonAction
   END_GAME,
   RESTART,
   RETURN,
-}
-
-
-export function getCurrentDate()
-{
-  let currentDate= new Date();
-  /*
-  let date= currentTime.getFullYear()+"/"+
-            leadingZero(currentTime.getMonth()+1) +"/"+
-            leadingZero(currentTime.getDate())+" "+
-            leadingZero(currentTime.getHours())+":"+
-            leadingZero(currentTime.getMinutes())
-            */
-  return currentDate;
 }
 
 export enum GameDifficulty

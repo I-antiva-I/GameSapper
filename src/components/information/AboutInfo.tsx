@@ -1,5 +1,4 @@
 import React from "react";
-import { GameResult } from "../../scripts/game_logic/game_process";
 
 function AboutInfo()
 {   

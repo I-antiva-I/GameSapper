@@ -12,13 +12,20 @@ import Settings from "./settings/Settings";
 import { GamePhase, GameState, GameResult } from "../scripts/game_logic/game_process";
 import { LogicField } from "../scripts/game_logic/logic_field";
 import { FieldSettings } from "../scripts/game_logic/game_process"
-import { ClickMode, ControlButtonAction, DisplayMode } from "../scripts/utility/core";
+import { ClickMode, ControlButtonAction, DisplayMode, getDifficultySettings } from "../scripts/utility/core";
 import { CoordinatePair } from "../scripts/game_logic/logic_cell";
+
 
 function PlayScene()
 {   
+    let fieldSettingsString = localStorage.getItem("FIELD_SETTINGS");
+    let defaultFieldSettings: FieldSettings = new FieldSettings(5, 3, 3, 3, 1);
+    if (fieldSettingsString !== null)
+    {
+        defaultFieldSettings = JSON.parse(fieldSettingsString);
+    }
     // UseStates
-    let [fieldSettings, setFieldSettings] = useState(new FieldSettings(5, 3, 3, 3, 1));
+    let [fieldSettings, setFieldSettings] = useState(defaultFieldSettings);
     let [gameState, setGameState] = useState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
     let [clickMode, setClickMode] = useState(ClickMode.OPEN_CELL);
     let [displayMode, setDisplayMode] = useState(DisplayMode.GAME);
@@ -32,6 +39,7 @@ function PlayScene()
         {
             setGameState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
             setClickMode(ClickMode.OPEN_CELL);
+            localStorage.setItem("FIELD_SETTINGS", JSON.stringify(fieldSettings));
         }, [fieldSettings]); 
   
     useEffect(() => 
@@ -77,6 +85,11 @@ function PlayScene()
                 localStorage.setItem("BEST_SCORE", JSON.stringify(currentScore));
             }
         }
+        else
+        {
+            localStorage.setItem("BEST_SCORE", JSON.stringify(currentScore));
+        }
+
         //renders.current++; ,renders.current
         console.log("R", isNewBestScore, currentScore, localStorage.getItem("BEST_SCORE"));
         return {isNewBestScore: isNewBestScore, currentScore: currentScore};
@@ -104,9 +117,11 @@ function PlayScene()
         {
             if (!logicField.openCell(coordinates))
             {
-                victory = logicField.endGame();
+                victory = false;
+                logicField.endGame();
                 phase =  GamePhase.END;
-                result.current = getResult(victory, logicField)
+                result.current = getResult(victory, logicField);
+            
             }
         }
         else
