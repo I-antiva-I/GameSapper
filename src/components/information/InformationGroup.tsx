@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import headerIcon from "../../images/icons/angle-up-solid.svg";
+import headerIcon from "../../images/icons/arrow.svg";
 
 interface InformationGroupProps
 {
@@ -33,6 +33,5 @@ function InformationGroup(props: InformationGroupProps)
         </div>
     )
 }
-
 
 export default InformationGroup;

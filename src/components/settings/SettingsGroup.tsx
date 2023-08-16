@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import headerIcon from "../../images/icons/angle-up-solid.svg";
+import headerIcon from "../../images/icons/arrow.svg";
 
 interface SettingsGroupProps
 {
