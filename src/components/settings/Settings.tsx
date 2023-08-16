@@ -12,16 +12,21 @@ function Settings(props: {setFieldSettings: Function})
     return(
         <div className="wrapper for-settings">
             <div className="settings">
-                <h2>SETTINGS</h2>
-                <SettingsGroup
-                    isSubGroup=         {false}
-                    isContentVisible=   {true}
-                    groupHeader=        "Difficulty"
-                    groupClassName=     "difficulty">
-                        
-                    <Difficulty setFieldSettings={props.setFieldSettings}/>
+                <div className="settings-header">
+                    <h2>SETTINGS</h2>
+                </div>
+              
+                <div className="settings-content">
+                    <SettingsGroup
+                            isSubGroup=         {false}
+                            isContentVisible=   {true}
+                            groupHeader=        "Difficulty"
+                            groupClassName=     "difficulty">
+                                
+                            <Difficulty setFieldSettings={props.setFieldSettings}/>
 
-                </SettingsGroup>
+                        </SettingsGroup>
+                </div>
             </div>
         </div>
 
