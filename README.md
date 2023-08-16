@@ -10,6 +10,9 @@ The playing field consists from grid, which is divided into clickable cells and 
 
 The objective is to open the board without detonating any mines
 
+## Play now
+[**Link**](https://i-antiva-i.github.io/GameSapper/)
+
 ## Languages and Tools
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
