@@ -17,7 +17,7 @@ The objective is to open the board without detonating any mines
 ![React](https://img.shields.io/badge/React-696969?style=for-the-badge&logo=react&logoColor=61DAFB)
 
 ## ToDo List
-- [ ] Rework CSS
+- [X] Rework CSS
 - [ ] Responsive CSS (mobile)
 - [ ] CSS animations
 - [ ] Remember user's settings
