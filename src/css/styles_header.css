@@ -17,21 +17,15 @@
 }
 .game-title
 {
-    margin-inline: 1.5rem;
+    margin: 0.75rem 1.5rem;
 
 }
-
-
-
-
 
 .game-title h1
 {
-    margi1n-inline: 2rem 0.5rem;
+
     font-size: 4rem;
 }
-
-
 
 .wrapper.for-game-info
 {
@@ -43,17 +37,18 @@
 
 .game-info
 {
-    margin-block:   0.75rem;
-    margin-inline:  1.5rem;
+    margin: 0.75rem 1.5rem;
 
     font-size: 1rem;
 
-    display: grid;
-    grid-template-columns: 2rem auto 6rem 8rem 2rem auto 6rem;
-    grid-template-rows: 2rem 2rem;
-    justify-content:    stretch;
-    align-items:        stretch;
-    gap:  8px;
+    display:    grid;
+    gap:        8px;
+    grid-template-columns:  2rem auto 6rem 8rem 2rem auto 6rem;
+    grid-template-rows:     2rem 2rem;
+
+
+    justify-content:        stretch;
+    align-items:            stretch;
 
 }
 
@@ -63,7 +58,7 @@
     justify-content:    center;
     align-items:        center;
    
-    padding: 2px;
+    padding: 4px;
     border-radius: 4px;
     background-color:   white;
 }
