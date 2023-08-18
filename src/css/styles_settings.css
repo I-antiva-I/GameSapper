@@ -69,6 +69,8 @@
 
 .settings-group-header
 {
+    width: 100%;
+
     display:                grid;
     grid-template-columns:  3.25rem auto;
     grid-template-rows:     3.25rem;
@@ -80,7 +82,7 @@
 
 .settings-group.sub-group 
 {
-    margin-left: 0.75rem;
+    mar1gin-left: 0.75rem;
 }
 
 .settings-group.sub-group .settings-group-header
@@ -117,6 +119,8 @@
 {
     font-size:  1.75rem;
 
+    width: 100%;
+
     b1ackground-color:   white;
     color:              white;
     
@@ -124,7 +128,7 @@
 
     display:            flex;
     flex-direction:     row;
-    justify-content:    center;
+    justify-content:    flex-start;
     align-items:        center;
 
     padding: 0 1rem;
@@ -132,15 +136,40 @@
     border-radius: 4px;
 }
 
-.settings-group-content
+.settings-group-header h4
 {
+    padding: 0 1rem;
+
+    width: 100%;
+
+    border-radius: 4px;
+
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        center;
+
+    border: 3px solid white;
+}
+
+.settings-group-content.main-group 
+{
+    width: 100%;
+
     display:            flex;
     flex-direction:     row;
     justify-content:    center;
     align-items:        center;  
     
     font-size: 1.375rem;
-    padding: 0.75rem 0;
+
+    margin-top: 0.75rem;
+    padding: 1.25rem 1.25rem;
+
+    border-radius: 4px;
+
+    background-color:   #212121;
+    border: 3px solid black;
 }
 
 
