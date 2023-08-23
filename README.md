@@ -19,11 +19,4 @@ The objective is to open the board without detonating any mines
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-696969?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-## ToDo List
-- [X] Rework CSS
-- [ ] Responsive CSS (mobile)
-- [ ] CSS animations
-- [ ] Remember user's settings
-- [ ] Add color themes settings
-- [ ] Add cell size settings
-- [ ] Rewrite information section
+
