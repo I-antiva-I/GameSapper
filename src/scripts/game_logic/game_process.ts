@@ -18,19 +18,27 @@ class GameResult
 {
     victory:            boolean;
     numberOfBombs:      number;
+    numberOfBombsFound: number;
     numberOfRows:       number;
     numberOfColumns:    number;
     time:               number;
     date:               Date;
 
-    constructor(victory: boolean, numberOfBombs: number, numberOfRows: number, numberOfColumns: number, time: number, date: Date)
+    constructor(victory: boolean, 
+        numberOfBombs: number, 
+        numberOfBombsFound: number,
+        numberOfRows: number, 
+        numberOfColumns: number, 
+        time: number, 
+        date: Date)
     {
-        this.victory =          victory;
-        this.numberOfBombs  =   numberOfBombs;
-        this.numberOfRows =     numberOfRows;
-        this.numberOfColumns =  numberOfColumns;
-        this.time =             time;
-        this.date =             date;
+        this.victory =              victory;
+        this.numberOfBombs  =       numberOfBombs;
+        this.numberOfBombsFound =   numberOfBombsFound;
+        this.numberOfRows =         numberOfRows;
+        this.numberOfColumns =      numberOfColumns;
+        this.time =                 time;
+        this.date =                 date;
     }
 
     isGreaterThan(object: GameResult) : boolean
@@ -40,6 +48,9 @@ class GameResult
 
         else if (this.numberOfBombs !== object.numberOfBombs)
                 {return (this.numberOfBombs>object.numberOfBombs);}
+
+        else if (this.numberOfBombsFound !== object.numberOfBombsFound)
+                {return (this.numberOfBombsFound>object.numberOfBombsFound);}
 
         else if ((this.numberOfRows*this.numberOfColumns) !== (object.numberOfRows*object.numberOfColumns)) 
                 {return (this.numberOfRows*this.numberOfColumns) > (object.numberOfRows*object.numberOfColumns);}
