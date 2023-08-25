@@ -20,6 +20,8 @@ interface ControlPanelProps
 
 function ControlPanel(props: ControlPanelProps)
 {
+
+
     return(
         <div className="wrapper for-control-panel">
             <div className="control-panel">   
@@ -50,14 +52,7 @@ function ControlPanel(props: ControlPanelProps)
                         buttonAction=           {ControlButtonAction.PLAY}
                         onControlButtonClicked= {props.onControlButtonClicked}/>
                 }       
-                
-                {
-                    (isControlButtonDisplayed(ControlButtonAction.RESTART, props.displayMode, props.phase)) &&
-                    <ControlButton
-                        buttonAction=           {ControlButtonAction.RESTART}
-                        onControlButtonClicked= {props.onControlButtonClicked}/>
-                }     
-
+                  
                 {   
                     // Game End Screen ---------------------------
                     ((props.displayMode === DisplayMode.GAME)   &&
@@ -69,11 +64,11 @@ function ControlPanel(props: ControlPanelProps)
                 }
 
                 {
-                    (isControlButtonDisplayed(ControlButtonAction.RETURN, props.displayMode, props.phase)) &&
+                    (isControlButtonDisplayed(ControlButtonAction.RESTART, props.displayMode, props.phase)) &&
                     <ControlButton
-                        buttonAction=           {ControlButtonAction.RETURN}
+                        buttonAction=           {ControlButtonAction.RESTART}
                         onControlButtonClicked= {props.onControlButtonClicked}/>
-                } 
+                }   
 
                 {
                     (isControlButtonDisplayed(ControlButtonAction.END_GAME, props.displayMode, props.phase)) &&
@@ -85,6 +80,7 @@ function ControlPanel(props: ControlPanelProps)
                 {
                     (isControlButtonDisplayed(ControlButtonAction.MODE_OPEN_CELL, props.displayMode, props.phase)) &&
                     <ControlButton
+                        isActive=               {(props.clickMode === ClickMode.OPEN_CELL)}
                         buttonAction=           {ControlButtonAction.MODE_OPEN_CELL}
                         onControlButtonClicked= {props.onControlButtonClicked}/>
                 }     
@@ -92,6 +88,7 @@ function ControlPanel(props: ControlPanelProps)
                 {
                     (isControlButtonDisplayed(ControlButtonAction.MODE_FLAG_CELL, props.displayMode, props.phase)) &&
                     <ControlButton
+                        isActive=               {(props.clickMode === ClickMode.FLAG_CELL)}
                         buttonAction=           {ControlButtonAction.MODE_FLAG_CELL}
                         onControlButtonClicked= {props.onControlButtonClicked}/>
                 } 
