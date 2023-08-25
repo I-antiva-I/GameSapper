@@ -18,7 +18,6 @@ function Settings(props: {setFieldSettings: Function})
               
                 <div className="settings-content">
                     <SettingsGroup
-                            isSubGroup=         {false}
                             isContentVisible=   {true}
                             groupHeader=        "Difficulty"
                             groupClassName=     "difficulty">

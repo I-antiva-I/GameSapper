@@ -30,7 +30,7 @@ function Information()
 
                     <InformationGroup
                         isContentVisible=   {false}
-                        groupHeader=        "Other"
+                        groupHeader=        "Links"
                         groupClassName=     "other-info">
                         <OtherInfo/>
                     </InformationGroup>

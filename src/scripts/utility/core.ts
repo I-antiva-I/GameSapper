@@ -1,5 +1,3 @@
-// ⚙️ 🏆 🕹️ ✔️ 🎯 🚩 🔄 ❌ 💣
-
 import { FieldSettings } from "../game_logic/game_process";
 
 // Get random number
@@ -34,8 +32,6 @@ export function shuffleArray(array: any[])
   return array;
 
 }
-
-
 
 export enum ClickMode
 {
@@ -79,10 +75,10 @@ export function getDifficultySettings(difficulty: GameDifficulty)
   switch(difficulty)
   {
     case GameDifficulty.VERY_EASY:
-      return new FieldSettings(5,5,2,2,2);
+      return new FieldSettings(5,5,5,5,2);
 
     case GameDifficulty.EASY:
-      return new FieldSettings(7,7,8,12,2);
+      return new FieldSettings(7,7,10,12,2);
 
     case GameDifficulty.MEDIUM:
       return new FieldSettings(15,15,28,32,3);
@@ -97,3 +93,6 @@ export function getDifficultySettings(difficulty: GameDifficulty)
       return new FieldSettings(2,2,1,1,1);
   }
 }
+
+// Emoji
+// ⚙️ 🏆 🕹️ ✔️ 🎯 🚩 🔄 ❌ 💣

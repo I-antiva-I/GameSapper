@@ -85,8 +85,10 @@ function FormCustomDifficulty(props : FormCustomDifficultyProps)
                         value={formData.safeZoneRadius}
                         onChange={onInputValueChange}/>
 
-                <input type="submit" value="Submit" />
+                <input className="submit-button" type="submit" value="Submit" />
             </form>
+
+            
         </div>
 
     )

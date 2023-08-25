@@ -4,7 +4,7 @@
 ![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/I-antiva-I/GameSaper?style=for-the-badge)
 
 ## Description
-Sapper is a logic puzzle game.
+Sapper (Minesweeper) is a logic puzzle game.
 
 The playing field consists from grid, which is divided into clickable cells and can be opened. Some of these cells contain hidden bombs. If there is no bomb under the opened cell, then a number appears in it, displaying how many cells adjacent to the newly opened cell have bomb.
 
