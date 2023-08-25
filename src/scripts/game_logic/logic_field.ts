@@ -11,6 +11,7 @@ class LogicField
     safeZoneRadius:         number;
     numberOfRevealedCells:  number;
     numberOfFlaggedCells:   number;
+    numberOfBombsFound:     number;
 
     constructor(settings: FieldSettings)
     {
@@ -24,6 +25,7 @@ class LogicField
         this.safeZoneRadius=        settings.safeZoneRadius;
         this.numberOfRevealedCells= 0;
         this.numberOfFlaggedCells=  0;
+        this.numberOfBombsFound=    0;
 
         this.prepareField();
     }
@@ -84,7 +86,9 @@ class LogicField
             {
                 let currentCell=        this.getCellByCoordinates(currentCoordinates);
                 if (currentCell !== undefined)
-                {
+                {   
+                    if ((openedCells===0) && (currentCell.isFlagged)) {continue;}
+ 
                     if (currentCell.isOpened) {continue;}
 
                     currentCell.isOpened=true;
@@ -172,7 +176,7 @@ class LogicField
             if(!cell.isOpened)
             {
                 cell.isOpened=true;
-                if      ( cell.isBomb  &&  cell.isFlagged)  {cell.state= CellState.DEFUSED;}
+                if      ( cell.isBomb  &&  cell.isFlagged)  {cell.state= CellState.DEFUSED;  this.numberOfBombsFound++;}
                 else if ( cell.isBomb  && !cell.isFlagged)  {cell.state= CellState.EXPLODED; victory=false;}
                 else if (!cell.isBomb  &&  cell.isFlagged)  {cell.state= CellState.MISTAKEN; victory=false;}
             }
