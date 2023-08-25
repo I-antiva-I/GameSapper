@@ -5,19 +5,27 @@ import { setInterval } from "timers/promises";
 interface TimerProps
 {
     phase: GamePhase,
-    setTimePassed: React.Dispatch<React.SetStateAction<number>>,
-    timePassed: number
+
+    increaseTimePassed: Function,
+    nullifyTimePassed:  Function,
 }
 
 function Timer(props: TimerProps)
 {
     // Timer
+    let [timeNow, setTimeNow] = useState<number>(0);
     let timePassedInterval = useRef<number | undefined>(undefined);
 
     let startTimer = () =>
     {
+        props.nullifyTimePassed();
+        setTimeNow(0);
         if (timePassedInterval.current !== undefined) {return};
-        timePassedInterval.current = window.setInterval(() => {props.setTimePassed((prev) => prev+1)}, 1000);
+        timePassedInterval.current = window.setInterval(() => 
+        {
+            props.increaseTimePassed();
+            setTimeNow((prev) => prev+1);
+        }, 1000);
     }
     let stopTimer = () =>
     {
@@ -41,11 +49,9 @@ function Timer(props: TimerProps)
             if (props.phase === GamePhase.IDLE)
             {
                 stopTimer();
-                props.setTimePassed(0);
             }
             else if (props.phase === GamePhase.IN_PROGRESS)
             {
-                props.setTimePassed(0);
                 startTimer();
             }
             else if (props.phase === GamePhase.END)
@@ -58,8 +64,8 @@ function Timer(props: TimerProps)
 
 
     // Display values
-    let minutes = (Math.floor(props.timePassed/60)).toString().padStart(2,"0");
-    let seconds = (props.timePassed%60).toString().padStart(2,"0");
+    let minutes = (Math.floor(timeNow/60)).toString().padStart(2,"0");
+    let seconds = (timeNow%60).toString().padStart(2,"0");
     
     return(
         <div className="wrapper for-timer">

@@ -12,64 +12,88 @@ import Settings from "./settings/Settings";
 import { GamePhase, GameState, GameResult } from "../scripts/game_logic/game_process";
 import { LogicField } from "../scripts/game_logic/logic_field";
 import { FieldSettings } from "../scripts/game_logic/game_process"
-import { ClickMode, ControlButtonAction, DisplayMode, getDifficultySettings } from "../scripts/utility/core";
+import { ClickMode, ControlButtonAction, DisplayMode, GameDifficulty, getDifficultySettings } from "../scripts/utility/core";
 import { CoordinatePair } from "../scripts/game_logic/logic_cell";
 
 
 function PlayScene()
 {   
+    // Default field settings 
+    let defaultFieldSettings: FieldSettings;
+
+    // Try to get saved settings from local storage
     let fieldSettingsString = localStorage.getItem("FIELD_SETTINGS");
-    let defaultFieldSettings: FieldSettings = new FieldSettings(5, 3, 3, 3, 1);
     if (fieldSettingsString !== null)
     {
         defaultFieldSettings = JSON.parse(fieldSettingsString);
     }
-    // UseStates
-    let [fieldSettings, setFieldSettings] = useState(defaultFieldSettings);
-    let [gameState, setGameState] = useState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
-    let [clickMode, setClickMode] = useState(ClickMode.OPEN_CELL);
-    let [displayMode, setDisplayMode] = useState(DisplayMode.GAME);
-    let [timePassed, setTimePassed]= useState(0);
-   
-    // UseRefs
-    let result = useRef<any>(undefined);
+    else
+    {
+        defaultFieldSettings = getDifficultySettings(GameDifficulty.VERY_EASY);
+    }
 
-    // UseEffects
+    // States
+    let [fieldSettings, setFieldSettings] =     useState(defaultFieldSettings);
+    let [gameState, setGameState] =             useState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
+    let [clickMode, setClickMode] =             useState(ClickMode.OPEN_CELL);
+    let [displayMode, setDisplayMode] =         useState(DisplayMode.GAME);
+   
+    // Refs
+    let result =        useRef<any>(undefined);
+    let timePassed=     useRef<number>(0);
+    // Time passed manipulators
+    let increaseTimePassed =    () => {timePassed.current=timePassed.current+1;}
+    let nullifyTimePassed =     () => {timePassed.current = 0;}
+
+    // Effects 
+    // Change of fieldSettings
     useEffect(() => 
         {
             setGameState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
             setClickMode(ClickMode.OPEN_CELL);
             localStorage.setItem("FIELD_SETTINGS", JSON.stringify(fieldSettings));
-        }, [fieldSettings]); 
-  
+        }, [fieldSettings]);
+
+    // Change of gameState
     useEffect(() => 
         {
-            if (gameState.phase === GamePhase.END)
+            if (gameState.phase === GamePhase.END) 
             {
                 setClickMode(ClickMode.OPEN_CELL);
+            }
+            if (gameState.phase === GamePhase.IDLE)
+            {
+                setDisplayMode(DisplayMode.GAME);
             }
         }, [gameState]); 
 
     // Functions
+    // Get end score of the game
     let getResult = (victory: boolean, logicField: LogicField) =>
     {
-        let currentScore = new GameResult(victory, logicField.numberOfBombs, 
+        // Achieved score
+        let currentScore = new GameResult(victory, 
+                                        logicField.numberOfBombs,
+                                        logicField.numberOfBombsFound,
                                         logicField.numberOfRows,
                                         logicField.numberOfColumns, 
-                                        timePassed, 
+                                        timePassed.current, 
                                         new Date());
-        
+
+        // Remember achieved score as LAST_SCORE
         localStorage.setItem("LAST_SCORE", JSON.stringify(currentScore));
+
+        // By default achieved score is the new best score 
         let isNewBestScore = true;
+
+        // Check if achieved score is really the new best score 
         let bestScoreString = localStorage.getItem("BEST_SCORE");
-
-        console.log("GR BS", localStorage.getItem("BEST_SCORE"));
-
         if (bestScoreString !== null)
         {
+            // Try to compare
             try
             {
-                let bestScore = JSON.parse(bestScoreString) as GameResult ;
+                let bestScore = JSON.parse(bestScoreString);
                 if (currentScore.isGreaterThan(bestScore))
                 {
                     localStorage.setItem("BEST_SCORE", JSON.stringify(currentScore));
@@ -79,6 +103,7 @@ function PlayScene()
                     isNewBestScore = false;
                 }
             }
+            // Unable to compare
             catch (error: unknown)
             {
                 localStorage.removeItem("BEST_SCORE");
@@ -90,8 +115,6 @@ function PlayScene()
             localStorage.setItem("BEST_SCORE", JSON.stringify(currentScore));
         }
 
-        //renders.current++; ,renders.current
-        console.log("R", isNewBestScore, currentScore, localStorage.getItem("BEST_SCORE"));
         return {isNewBestScore: isNewBestScore, currentScore: currentScore};
     }
     
@@ -101,9 +124,6 @@ function PlayScene()
         let logicField =    gameState.logicField;
         let phase =         gameState.phase;
         let victory =       gameState.victory;
-        
-
-        console.log("COORS", coordinates);
 
         // Generate field if the first cell is clicked
         if (phase === GamePhase.IDLE)
@@ -121,7 +141,6 @@ function PlayScene()
                 logicField.endGame();
                 phase =  GamePhase.END;
                 result.current = getResult(victory, logicField);
-            
             }
         }
         else
@@ -169,8 +188,6 @@ function PlayScene()
                 break;
     
             case ControlButtonAction.RESTART:
-            case ControlButtonAction.RETURN:
-                //setClickMode(ClickMode.OPEN_CELL); (!!!)
                 setGameState(new GameState(GamePhase.IDLE, new LogicField(fieldSettings), false));
                 break;
     
@@ -178,7 +195,6 @@ function PlayScene()
                 console.log("Unknown action", buttonAction);
         }
     }
-
 
     return(
         <div className="play-scene">
@@ -188,8 +204,9 @@ function PlayScene()
                     numberOfRevealedCells=  {gameState.logicField.numberOfRevealedCells}
                     numberOfFlaggedCells=   {gameState.logicField.numberOfFlaggedCells}
                     phase=                  {gameState.phase}
-                    setTimePassed=          {setTimePassed}
-                    timePassed=             {timePassed}
+                    // Time
+                    increaseTimePassed=     {increaseTimePassed}
+                    nullifyTimePassed=      {nullifyTimePassed}
                 />
                 <ControlPanel
                     phase=                  {gameState.phase}

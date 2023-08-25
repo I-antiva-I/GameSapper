@@ -9,8 +9,9 @@ interface MyHeaderProps
     numberOfRevealedCells: number,
     numberOfFlaggedCells: number,
     phase: GamePhase,
-    setTimePassed: React.Dispatch<React.SetStateAction<number>>,
-    timePassed: number,
+
+    increaseTimePassed: Function,
+    nullifyTimePassed:  Function,
 }
 
 function MyHeader(props: MyHeaderProps)
@@ -28,8 +29,8 @@ function MyHeader(props: MyHeaderProps)
                     numberOfRevealedCells=  {props.numberOfRevealedCells}
                     numberOfFlaggedCells=   {props.numberOfFlaggedCells}
                     phase=                  {props.phase}
-                    setTimePassed=          {props.setTimePassed}
-                    timePassed=             {props.timePassed}
+                    increaseTimePassed=     {props.increaseTimePassed}
+                    nullifyTimePassed=      {props.nullifyTimePassed}
                     />
             </div>
         </div>
