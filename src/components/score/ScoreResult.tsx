@@ -1,5 +1,7 @@
 import React from "react";
 import { GameResult } from "../../scripts/game_logic/game_process";
+import IconSVG from "../IconSVG";
+import { IconType } from "../../scripts/utility/managers/icon_manager";
 
 interface ScoreResultProps
 {
@@ -10,13 +12,14 @@ interface ScoreResultProps
 
 function ScoreResult(props: ScoreResultProps)
 {   
-    console.log(props.result);
-
     if (props.result !== undefined)
     {
-        // Some weird behavior due to JSON parsing - date is STRING
-        // console.log(typeof(props.result.date), props.result.date);
+        // [!] Some weird behavior due to JSON parsing - date is STRING
         let fixedDate: Date = new Date(props.result.date);
+        
+        // Display values
+        let time    = fixedDate.toLocaleTimeString();
+        let date    = fixedDate.toLocaleDateString();
 
         return(
             <div className={"score-result "+props.className}>
@@ -26,25 +29,33 @@ function ScoreResult(props: ScoreResultProps)
                 </div>
 
                 <div className="score-result-content">
-                    <div className="score-result-icon">💣</div>
-                    <div className="score-result-label">Number Of Bombs</div>
+                    <div className="score-result-icon"><IconSVG iconType={IconType.BOMB} iconColor="black"/></div>
+                    <div className="score-result-label">Bombs Total</div>
                     <div className="score-result-value">{props.result.numberOfBombs}</div>
+
+                    <div className="score-result-icon"><IconSVG iconType={IconType.EYE} iconColor="black"/></div>
+                    <div className="score-result-label">Bombs Found</div>
+                    <div className="score-result-value">{props.result.numberOfBombsFound}</div>
         
-                    <div className="score-result-icon">💣</div>
-                    <div className="score-result-label">Number Of Columns</div>
+                    <div className="score-result-icon"><IconSVG iconType={IconType.ARROWS_UDLR} iconColor="black"/></div>
+                    <div className="score-result-label">Columns</div>
                     <div className="score-result-value">{props.result.numberOfColumns}</div>
         
-                    <div className="score-result-icon">💣</div>
-                    <div className="score-result-label">Number Of Rows</div>
+                    <div className="score-result-icon"><IconSVG iconType={IconType.ARROWS_UDLR} iconColor="black"/></div>
+                    <div className="score-result-label">Rows</div>
                     <div className="score-result-value">{props.result.numberOfRows}</div>
         
-                    <div className="score-result-icon">💣</div>
+                    <div className="score-result-icon"><IconSVG iconType={IconType.HOURGLASS} iconColor="black"/></div>
                     <div className="score-result-label">Time</div>
                     <div className="score-result-value">{props.result.time}</div>
         
-                    <div className="score-result-icon">💣</div>
-                    <div className="score-result-label">Date</div>
-                    <div className="score-result-value">{fixedDate.toLocaleString()}</div>
+                    <div className="score-result-icon"><IconSVG iconType={IconType.CALENDAR} iconColor="black"/></div>
+                    <div className="score-result-label">Date (Day)</div>
+                    <div className="score-result-value">{date}</div>
+
+                    <div className="score-result-icon"><IconSVG iconType={IconType.CLOCK} iconColor="black"/></div>
+                    <div className="score-result-label">Date (Time)</div>
+                    <div className="score-result-value">{time}</div>
                 </div>
             </div>
         )
