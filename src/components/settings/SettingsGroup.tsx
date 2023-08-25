@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import headerIcon from "../../images/icons/arrow.svg";
+import IconSVG from "../IconSVG";
+import { IconType } from "../../scripts/utility/managers/icon_manager";
 
 interface SettingsGroupProps
 {
-    isSubGroup:         boolean,
     isContentVisible:   boolean,
     groupHeader:        String,
     groupClassName:     String,
@@ -13,25 +14,26 @@ interface SettingsGroupProps
 function SettingsGroup(props: SettingsGroupProps)
 {
     let [isContentVisible, setIsContentVisible] = useState(props.isContentVisible);
+    let [iconColor, setIconColor] = useState("white");
     let onHeaderClicked = () =>
     {
         setIsContentVisible(!isContentVisible);
     }
 
     return(
-        <div className={"settings-group"+
-                        ((props.isSubGroup) ? " sub-group" : " main-group")+
-                        " group-"+props.groupClassName+
-                        ((isContentVisible) ? " visible" : " hidden" )}>
+        <div className={"settings-group group-"+props.groupClassName+((isContentVisible) ? " visible" : " hidden" )}>
 
-            <div className={"settings-group-header"+((props.isSubGroup) ? " sub-group" : " main-group")} onClick={()=>{onHeaderClicked()}}>
+            <div className={"settings-group-header"} 
+                onMouseLeave=   {()=>{setIconColor("white")}}
+                onMouseEnter=   {()=>{setIconColor("black")}}
+                onClick={()=>{onHeaderClicked()}}>
                 <div className="wrapper for-header-icon">
-                    <img className="header-icon" src={headerIcon}/>
+                    <IconSVG iconType={IconType.GROUP_ARROW} iconColor={iconColor}/>
                 </div>
-                {(props.isSubGroup) ?  <h4>{props.groupHeader}</h4> : <h3>{props.groupHeader}</h3>}
+                {<h3>{props.groupHeader}</h3>}
             </div>
 
-            <div className={"settings-group-content"+((props.isSubGroup) ? " sub-group" : " main-group")+" wrapper for-"+props.groupClassName}>
+            <div className={"settings-group-content wrapper for-"+props.groupClassName}>
                 {props.children}
             </div>
         </div>
