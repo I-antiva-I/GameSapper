@@ -6,7 +6,7 @@
     
     bo1rder: 2px dashed lime;
 
-    padding: 1rem;
+    padding: 2rem 2rem;
     background-color: #424242;
     box-shadow:
         rgba(0, 0, 0, 0.25) 0px 2px 4px;
@@ -23,11 +23,13 @@
 
     gap: 6px;
 
+    border: 4px solid black;
+    border-radius: 4px;
+
     overflow:auto;
     overscroll-behavior: contain;
-    padding: 1rem !important;
+    padding: 6px;
     scroll-snap-type: mandatory;
-    bor1der: 2px dashed red;
     
     scroll-snap-type: inline mandatory;
     scroll-padding: 6px;
@@ -40,6 +42,9 @@
 
     width:      2.75rem;
     height:     2.75rem;
+
+    w1idth:      1rem;
+    h1eight:     1rem;
 
     position: relative;
 

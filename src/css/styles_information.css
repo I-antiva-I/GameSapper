@@ -80,41 +80,48 @@
     align-items:            stretch;
     
     gap: 0.75rem;
+
+    cursor: pointer;
 }
 
 .information-group-header .wrapper.for-header-icon
 {   
-    display:            flex;
-    flex-direction:     row;
+    display:                flex;
+    flex-direction:         row;
 
-    background-color: white;
+    background-color:       black;
 
     border-radius: 4px;
+
+    transform: rotate(-90deg);
 }
 
-.information-group-header .header-icon
+.information-group.visible .wrapper.for-header-icon
 {
-    width:      2rem;
-    height:     2rem;
+    transform: rotate(0deg);
+}
+
+.information-group-header .icon-svg
+{
+    width:      2.5rem;
+    height:     2.5rem;
 
     display:            flex;
     flex-direction:     row;
     justify-content:    center;
     align-items:        center;
-
-    transform: rotate(180deg);
 }
 
 .information-group-header h3
 {
     font-size:  1.75rem;
+    letter-spacing: 1px;
 
     width: 100%;
     text-align: left;
-    b1ackground-color:   white;
+    background-color:   black;
     color:              white;
     
-    border: 3px solid white;
 
     display:            flex;
     flex-direction:     row;
@@ -126,6 +133,18 @@
     border-radius: 4px;
 }
 
+.information-group-header:hover h3
+{
+    background-color:   white;
+    color:              black;
+
+}
+
+.information-group-header:hover .wrapper.for-header-icon
+{   
+    background-color:       white;
+}
+
 .information-group-content
 {
     width: 100%;
@@ -135,18 +154,220 @@
     justify-content:    center;
     align-items:        center;  
     
-    font-size: 1.375rem;
+    font-size:          1.25rem;
 
-    margin-top: 0.75rem;
-    padding: 1.25rem 1.25rem;
+    margin-top:         0.75rem;
+    padding:            1.25rem 1.25rem;
+
+    border-radius:      4px;
+
+    background-color:   #212121;
+    border:             3px solid black;
+}
+
+/* ABOUT */
+.about-info p
+{
+    font-size: 1.25rem;
+
+}
+.about-info p ~ p
+{
+    margin-top: 0.5rem;
+}
+
+/* HOW-TO */
+.how-to-info
+{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+
+    gap: 1rem;
+}
+.how-to-info h4
+{
+    font-size: 1.375rem;
+    letter-spacing: 1px;
+}
+
+.how-to-info p ~ p
+{
+    margin-top: 0.5rem;
+}
+
+.how-to-item 
+{
+    width: 100%;
+}
+
+.how-to-item ~ .how-to-item 
+{
+    border-top: 3px solid white;
+    padding-top: 0.5rem;
+}
+
+.example-grid
+{
+    width: fit-content;
+
+    margin: 0.5rem auto 0.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    gap: 6px;
+}
+
+
+.example-cell
+{
+    width:      2.75rem;
+    height:     2.75rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    font-size:      1.25rem;
+    font-weight:    700;
+
 
     border-radius: 4px;
 
-    background-color:   #212121;
-    border: 3px solid black;
+    box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 2px 4px;
+
+    background-color: #424242;
+    color: white;
+    border: 2px solid black;
 }
 
-.about-info p ~ p
+.example-cell.digit-1
 {
-    margin-top: 0.75rem;
+    color: var(--color-digit-1);
 }
+.example-cell.digit-2
+{
+    color: var(--color-digit-2);
+}
+.example-cell.digit-3
+{
+    color: var(--color-digit-3);
+}
+.example-cell.safe
+{
+    background-color: mediumseagreen;
+    color: white;
+}
+.example-cell.start
+{
+    background-color: dodgerblue;
+    color: white;
+}
+.example-cell.bomb
+{
+    background-color: crimson;
+}
+
+
+.p-with-margin
+{
+    margin-left: 1.25rem;
+}
+
+
+
+
+
+
+
+
+/* OTHER */
+.other-info
+{
+    width: 100%;
+
+    display:            flex;
+    flex-direction:     column;
+    justify-content:    center;
+    align-items:        center;  
+    
+    gap: 1rem;
+    
+}
+
+.other-info-item
+{
+    width: 100%;
+
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        center; 
+
+    gap: 1rem;
+    padding: 0.125rem 0rem;
+}
+
+.other-info-item .icon-svg
+{
+    width:      2.5rem;
+    height:     2.5rem;
+}
+
+.info-link
+{
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    flex-start;
+    align-items:        center; 
+
+    font-size: 1.25rem;
+
+}
+.info-link a
+{
+    color: white;
+    text-decoration: none;
+}
+
+.info-link a:visited
+{
+    color: white;
+    text-decoration: none;
+}
+
+.info-link a:hover
+{
+    color: dodgerblue; 
+
+}
+
+
+@media screen and (max-width: 700px) 
+{
+    
+    .information-group-header h3
+    {
+        font-size:  1.25rem;
+    }
+
+    .information-group-header .icon-svg
+    {
+        width:      2rem;
+        height:     2rem;
+    }
+    
+    .info-link
+    {
+        font-size: 1rem;
+    }
+}
+
